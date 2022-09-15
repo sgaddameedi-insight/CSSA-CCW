@@ -26,7 +26,7 @@ $(basename $0) pull-main   updates local main with remote main
 
 repo_name=$(basename -s .git `git config --get remote.origin.url`)
 branch_name=$(git rev-parse --abbrev-ref HEAD)
-gh_host='https://github.com'
+gh_host='github.com'
 
 # ----------------
 # Functions
@@ -93,7 +93,7 @@ elif [[ $1 == 'pr' ]]; then
     err_if_uncommitted_changes
   fi
   git push
-  base_url='https://github.com/sgaddameedi-insight/CSSA-CCW'
+  base_url='https://github.com/sgaddameedi-insight'
   url="$base_url/$repo_name/compare"
   echo "cert: $url/main...$branch_name?expand=1&labels=cert"
 elif [[ $1 == 'rebase' ]]; then
