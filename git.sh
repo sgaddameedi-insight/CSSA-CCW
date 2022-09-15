@@ -93,7 +93,7 @@ elif [[ $1 == 'pr' ]]; then
     err_if_uncommitted_changes
   fi
   git push
-  base_url='https://github.com/SanDiegoCountySheriff'
+  base_url='https://github.com/sgaddameedi-insight/CSSA-CCW'
   url="$base_url/$repo_name/compare"
   echo "cert: $url/main...$branch_name?expand=1&labels=cert"
 elif [[ $1 == 'rebase' ]]; then
