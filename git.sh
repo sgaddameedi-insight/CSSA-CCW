@@ -95,7 +95,7 @@ elif [[ $1 == 'pr' ]]; then
   git push
   base_url='https://github.com/sgaddameedi-insight'
   url="$base_url/$repo_name/compare"
-  echo "cert: $url/main...$branch_name?expand=1&labels=cert"
+  echo "main: $url/main...$branch_name?expand=1&labels=main"
 elif [[ $1 == 'rebase' ]]; then
   # rebases the current branch
   # - check if rebase necessary
