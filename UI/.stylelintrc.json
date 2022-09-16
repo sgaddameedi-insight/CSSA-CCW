@@ -1,0 +1,35 @@
+{
+  "ignoreFiles": ["**/*"],
+  "overrides": [
+    {
+      "files": ["**/*.css"],
+      "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+      "rules": {}
+    },
+    {
+      "files": ["**/*.vue", "**/*.scss"],
+      "extends": [
+        "stylelint-config-standard-scss",
+        "stylelint-config-prettier",
+        "stylelint-config-recommended-vue/scss",
+        "stylelint-config-prettier",
+        "stylelint-config-sass-guidelines",
+        "stylelint-config-idiomatic-order"
+      ],
+      "rules": {
+        "color-hex-case": "lower",
+        "selector-max-id": 1,
+        "color-named": "always-where-possible",
+        "max-nesting-depth": 8,
+        "order/properties-alphabetical-order": null,
+        "string-quotes": "single",
+        "function-parentheses-space-inside": null,
+        "indentation": null,
+        "selector-no-qualifying-type": null,
+        "selector-pseudo-element-no-unknown": null
+      }
+    }
+  ],
+  "customSyntax": "postcss-html",
+  "rules": {}
+}

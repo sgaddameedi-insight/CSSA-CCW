@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "@core-public": "./libs/core-public/src/lib",
+          "@core-admin": "./libs/core-admin/src/lib",
+          "@shared-ui": "./libs/shared/ui/src/lib",
+          "@shared-utils": "./libs/shared/utils/src/lib"
+        }
+      }
+    ]
+  ]
+}

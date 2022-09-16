@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "admin": "apps/admin",
+    "core-admin": "libs/core-admin",
+    "core-public": "libs/core-public",
+    "public": "apps/public",
+    "shared-ui": "libs/shared/ui",
+    "shared-utils": "libs/shared/utils"
+  }
+}
