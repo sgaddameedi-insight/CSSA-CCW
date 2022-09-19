@@ -1,0 +1,57 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx"],
+  "extends": ["plugin:vue-a11y/recommended"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx", "*.vue"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allowCircularSelfDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "@public",
+                "onlyDependOnLibsWithTags": ["@public", "@core-public", "@shared-ui", "@shared-utils"]
+              },
+              {
+                "sourceTag": "@admin",
+                "onlyDependOnLibsWithTags": ["@admin", "@core-admin", "@shared-ui", "@shared-utils"]
+              },
+              {
+                "sourceTag": "@core-public",
+                "onlyDependOnLibsWithTags": ["@core-public", "@shared-ui", "@shared-utils"]
+              },
+              {
+                "sourceTag": "@core-admin",
+                "onlyDependOnLibsWithTags": ["@core-admin", "@shared-ui", "@shared-utils"]
+              },
+              {
+                "sourceTag": "@shared-ui",
+                "onlyDependOnLibsWithTags": ["@shared-ui", "@shared-utils"]
+              },
+              {
+                "sourceTag": "@shared-utils",
+                "onlyDependOnLibsWithTags": ["@shared-utils", "@shared-ui"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    }
+  ]
+}

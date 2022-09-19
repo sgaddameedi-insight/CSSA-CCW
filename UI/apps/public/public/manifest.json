@@ -1,0 +1,20 @@
+{
+  "name": "CCW Admin",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "themeColor": "#42b983",
+  "msTileColor": "#000000",
+  "appleMobileWebAppCache": "yes",
+  "appleMobileWebAppStatusBarStyle": "#000000",
+  "icons": [
+    {
+      "src": "img/icons/msapplication-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "workboxOptions": {
+    "navigateFallback": "/index.html"
+  }
+}
