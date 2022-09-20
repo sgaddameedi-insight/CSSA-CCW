@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import PublicApp from './PublicApp.vue';
-import { store, router, vuetify } from '@cssa-ccw/core-public';
+import { router, vuetify } from '@cssa-ccw/core-public';
+import { store } from '@shared-ui/store';
 import wb from './registerServiceWorker';
 
 Vue.config.productionTip = false;

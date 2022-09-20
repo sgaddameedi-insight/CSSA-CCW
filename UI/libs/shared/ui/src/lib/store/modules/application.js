@@ -3,7 +3,7 @@ import {
   ADD_APPLICATION_TYPE,
   UPDATE_APPLICATION_TYPE,
   DELETE_APPLICATION_TYPE,
-} from '@/store/mutations/applicationMutations';
+} from '../mutations/applicationMutations';
 
 export default {
   state: {
