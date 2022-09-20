@@ -60,13 +60,21 @@
         </v-col>
       </v-row>
     </v-form>
+    <div class="alias-components-container">
+      <AliasDialog :save-alias="getAliasFromDialog" />
+    </div>
     <v-btn color="secondary" @click="handleSubmit"> continue </v-btn>
   </div>
 </template>
 
 <script>
+import { addPersonalInfoAction } from '../../../helpers/storeHelpers/personalInfoActions';
+import AliasDialog from '../../dialogs/AliasDialog';
+import { addAliasesAction } from '../../../helpers/storeHelpers/aliasActions';
+
 export default {
   name: 'FormStepOne',
+  components: { AliasDialog },
   props: {
     handleNextSection: Function,
   },
@@ -82,6 +90,7 @@ export default {
         maritalStatus: '',
       },
       ssnConfirm: '',
+      aliases: [],
     };
   },
   computed: {
@@ -99,7 +108,8 @@ export default {
   methods: {
     handleSubmit() {
       if (!this.checkForAnyErrors()) {
-        console.log(this.personalInfo);
+        addPersonalInfoAction(this.personalInfo);
+        addAliasesAction(this.aliases);
         this.handleNextSection();
       }
       // TODO: Make this into some sort of a alert call.
@@ -114,6 +124,10 @@ export default {
         this.personalInfo.ssn === this.ssnConfirm &&
         this.personalInfo.maritalStatus
       );
+    },
+    getAliasFromDialog(alias) {
+      console.log(alias);
+      this.aliases.unshift(alias);
     },
   },
 };
