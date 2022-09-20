@@ -1,4 +1,4 @@
-import { GET_CONTACT, ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT } from '@/store/mutations/contactMutations';
+import { GET_CONTACT, ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT } from '../mutations/contactMutations';
 
 export default {
   state: {

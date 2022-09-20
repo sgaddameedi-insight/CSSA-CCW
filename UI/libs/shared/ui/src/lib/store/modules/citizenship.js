@@ -1,4 +1,4 @@
-import { GET_CITIZEN, ADD_CITIZEN, UPDATE_CITIZEN, DELETE_CITIZEN } from '@/store/mutations/citizenshipMutations';
+import { GET_CITIZEN, ADD_CITIZEN, UPDATE_CITIZEN, DELETE_CITIZEN } from '../mutations/citizenshipMutations';
 
 export default {
   state: {
