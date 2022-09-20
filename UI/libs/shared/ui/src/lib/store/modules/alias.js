@@ -11,8 +11,8 @@ export default {
     [GET_ALIAS](state, aliases) {
       state.aliases = aliases;
     },
-    [ADD_ALIAS](state, alias) {
-      state.aliases.unshift(alias);
+    [ADD_ALIAS](state, aliases) {
+      state.aliases = aliases;
     },
     [DELETE_ALIAS](state, alias) {
       const index = state.aliases.indexOf(alias);
@@ -35,10 +35,10 @@ export default {
     /**
      * Used by the form to add another alias to the array of aliases.
      * @param commit calls the correct mutation -internal prop no need to pass anything in
-     * @param alias the new alias to add
+     * @param aliases Array of aliases to save to add to the store.
      */
-    addAlias({ commit }, alias) {
-      commit(ADD_ALIAS, alias);
+    addAlias({ commit }, aliases) {
+      commit(ADD_ALIAS, aliases);
     },
     /**
      * Can be used to update a currently existing alias
