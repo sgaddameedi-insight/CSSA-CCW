@@ -1,7 +1,8 @@
 <template>
   <div>
     <v-form>
-      <v-row>
+      <v-subheader class="subHeader font-weight-bold"> Personal Information</v-subheader>
+      <v-row class="ml-5">
         <v-col cols="6" md="5" sm="3">
           <v-text-field
             v-model="personalInfo.lastName"
@@ -43,27 +44,47 @@
         </v-col>
       </v-row>
       <v-divider class="my-3" />
-      <v-row>
-        <v-col cols="6" md="5" sm="3">
+
+      <v-subheader class="subHeader font-weight-bold"> Social Security Information </v-subheader>
+
+      <v-row class="ml-5">
+        <v-col cols="7" md="5" m="3">
           <v-text-field v-model="personalInfo.ssn" label="SSN" :rules="[v => !!v || 'SSN is required']" required>
           </v-text-field>
         </v-col>
 
-        <v-col cols="6" md="5" sm="3">
+        <v-col cols="7" md="5" sm="3">
           <v-text-field v-model="ssnConfirm" label="Confirm SSN" :rules="ssnConfirmError" required> </v-text-field>
         </v-col>
-        <v-col cols="6" md="5" sm="3">
-          <v-radio-group class="ml-3" v-model="personalInfo.maritalStatus">
-            <v-radio label="Married" value="married" />
-            <v-radio label="Single" value="single" />
+      </v-row>
+
+      <v-divider class="my-3" />
+      <v-row class="ml-1">
+        <v-subheader class="subHeader font-weight-bold"> Marital status </v-subheader>
+        <v-col cols="16" md="5" sm="3">
+          <v-radio-group class="ml-3 mt-0" row v-model="personalInfo.maritalStatus">
+            <v-radio class="pb-1" label="Married" value="married" />
+            <v-radio class="pb-1" label="Single" value="single" />
           </v-radio-group>
         </v-col>
       </v-row>
     </v-form>
+
+    <v-divider />
+    <v-subheader class="subHeader font-weight-bold"> Aliases </v-subheader>
     <div class="alias-components-container">
+      <AliasTable :aliases="aliases" />
       <AliasDialog :save-alias="getAliasFromDialog" />
     </div>
-    <v-btn color="secondary" @click="handleSubmit"> continue </v-btn>
+    <div class="form-btn-container">
+      <v-btn color="secondary mr-2" @click="handleSubmit"> Continue </v-btn>
+      <!-- TODO: this needs to save to save the current satete to local storage or call the api to save in
+      the db
+       -->
+      <v-btn color="info mr-2">Save and Exit</v-btn>
+      <!-- TODO: Make this return to the home page with out saving the form at all -->
+      <v-btn color="error mr-2"> Cancel</v-btn>
+    </div>
   </div>
 </template>
 
@@ -71,10 +92,11 @@
 import { addPersonalInfoAction } from '../../../helpers/storeHelpers/personalInfoActions';
 import AliasDialog from '../../dialogs/AliasDialog';
 import { addAliasesAction } from '../../../helpers/storeHelpers/aliasActions';
+import AliasTable from '../../tables/AliasTable';
 
 export default {
   name: 'FormStepOne',
-  components: { AliasDialog },
+  components: { AliasTable, AliasDialog },
   props: {
     handleNextSection: Function,
   },
@@ -133,4 +155,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.subHeader {
+  font-size: 1.5rem;
+}
+.form-btn-container {
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+}
+</style>
