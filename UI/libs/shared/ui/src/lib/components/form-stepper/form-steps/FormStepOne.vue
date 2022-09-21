@@ -94,8 +94,7 @@ import { defineComponent, PropType } from 'vue';
 import AliasDialog from '../../dialogs/AliasDialog';
 import AliasTable from '../../tables/AliasTable';
 import FormErrorAlert from '@shared-ui/components/alerts/FormErrorAlert.vue';
-import { addPersonalInfoAction } from '@shared-ui/helpers/storeHelpers/personalInfoActions';
-import { addAliasesAction } from '@shared-ui/helpers/storeHelpers/aliasActions';
+import { addPersonalInfoAction, addAliasesAction } from '@shared-ui/helpers/storeHelpers/storeActions';
 import { Alias, PersonalInfo } from '@shared-ui/types/defualtTypes';
 import { validateFormStepOne } from '@shared-ui/validators/form-validators/formStepOneValidators';
 
