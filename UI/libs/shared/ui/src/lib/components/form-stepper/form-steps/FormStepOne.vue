@@ -78,46 +78,47 @@
     </div>
     <div class="form-btn-container">
       <v-btn color="secondary mr-2" @click="handleSubmit"> Continue </v-btn>
-      <!-- TODO: this needs to save to save the current satete to local storage or call the api to save in
+      <!-- TODO: this needs to save to save the current state to local storage or call the api to save in
       the db
        -->
       <v-btn color="info mr-2">Save and Exit</v-btn>
       <!-- TODO: Make this return to the home page with out saving the form at all -->
       <v-btn color="error mr-2"> Cancel</v-btn>
     </div>
+    <FormErrorAlert v-if="errors.length > 0" :errors="errors" />
   </div>
 </template>
 
 <script lang="ts">
-import { addPersonalInfoAction } from '@shared-ui/helpers/storeHelpers/personalInfoActions';
+import { defineComponent, PropType } from 'vue';
 import AliasDialog from '../../dialogs/AliasDialog';
-import { addAliasesAction } from '@shared-ui/helpers/storeHelpers/aliasActions';
 import AliasTable from '../../tables/AliasTable';
+import FormErrorAlert from '@shared-ui/components/alerts/FormErrorAlert.vue';
+import { addPersonalInfoAction } from '@shared-ui/helpers/storeHelpers/personalInfoActions';
+import { addAliasesAction } from '@shared-ui/helpers/storeHelpers/aliasActions';
+import { Alias, PersonalInfo } from '@shared-ui/types/defualtTypes';
+import { validateFormStepOne } from '@shared-ui/validators/form-validators/formStepOneValidators';
 
-export default {
+export default defineComponent({
   name: 'FormStepOne',
-  components: { AliasTable, AliasDialog },
+  components: { AliasTable, AliasDialog, FormErrorAlert },
   props: {
-    handleNextSection: Function,
+    handleNextSection: {
+      type: Function as PropType<() => void>,
+      default: () => null,
+    },
   },
   data() {
     return {
-      personalInfo: {
-        lastName: '',
-        firstName: '',
-        middleName: '',
-        noMiddleName: false,
-        suffix: '',
-        ssn: '',
-        maritalStatus: '',
-      },
-      ssnConfirm: '',
-      aliases: [],
+      personalInfo: {} as PersonalInfo,
+      ssnConfirm: '' as string,
+      aliases: [] as Array<Alias>,
+      errors: [] as Array<string>,
     };
   },
   computed: {
-    ssnConfirmError() {
-      const errors = [];
+    ssnConfirmError(): Array<string> {
+      const errors: Array<string> = [];
       if (this.ssnConfirm !== '' && this.ssnConfirm !== this.personalInfo.ssn) {
         errors.push("SSN's do not match");
       }
@@ -129,30 +130,23 @@ export default {
   },
   methods: {
     handleSubmit() {
-      if (!this.checkForAnyErrors()) {
+      const formData = {
+        personalInfo: this.personalInfo,
+        ssnConfirm: this.ssnConfirm,
+      };
+      this.errors = validateFormStepOne(formData);
+      if (this.errors.length <= 0) {
         addPersonalInfoAction(this.personalInfo);
         addAliasesAction(this.aliases);
         this.handleNextSection();
       }
-      // TODO: Make this into some sort of a alert call.
-      console.log('error');
     },
-    checkForAnyErrors() {
-      return !(
-        this.personalInfo.lastName &&
-        this.personalInfo.firstName &&
-        (this.personalInfo.middleName || this.personalInfo.noMiddleName) &&
-        this.personalInfo.ssn &&
-        this.personalInfo.ssn === this.ssnConfirm &&
-        this.personalInfo.maritalStatus
-      );
-    },
+
     getAliasFromDialog(alias) {
-      console.log(alias);
       this.aliases.unshift(alias);
     },
   },
-};
+});
 </script>
 
 <style scoped>

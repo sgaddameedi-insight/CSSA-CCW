@@ -5,7 +5,7 @@
     </v-stepper-content>
 
     <v-stepper-content step="2">
-      <v-btn color="secondary" @click="handleNextSection"> continue </v-btn>
+      <FormStepTwo :handle-next-section="handleNextSection" />
     </v-stepper-content>
 
     <v-stepper-content step="3">
@@ -40,9 +40,10 @@
 
 <script lang="ts">
 import FormStepOne from '../form-stepper/form-steps/FormStepOne';
+import FormStepTwo from '@shared-ui/components/form-stepper/form-steps/FormStepTwo.vue';
 export default {
   name: 'FormStepItems',
-  components: { FormStepOne },
+  components: { FormStepOne, FormStepTwo },
   props: {
     stepIndex: Number,
     handleNextSection: Function,

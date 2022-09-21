@@ -54,13 +54,14 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { Alias } from '@shared-ui/types/defualtTypes';
 
 export default defineComponent({
   name: 'AliasDialog',
   props: {
     saveAlias: {
-      type: Function as PropType<(alias: any) => void>,
-      default: alias => {
+      type: Function as PropType<(alias: Alias) => void>,
+      default: () => {
         return;
       },
     },
@@ -74,7 +75,7 @@ export default defineComponent({
         cityWhereChanged: '',
         stateWhereChanged: '',
         courtFileNumber: '',
-      },
+      } as Alias,
       dialog: false,
     };
   },
