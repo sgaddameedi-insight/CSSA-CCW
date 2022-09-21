@@ -38,7 +38,7 @@
   </v-stepper-items>
 </template>
 
-<script>
+<script lang="ts">
 import FormStepOne from '../form-stepper/form-steps/FormStepOne';
 export default {
   name: 'FormStepItems',

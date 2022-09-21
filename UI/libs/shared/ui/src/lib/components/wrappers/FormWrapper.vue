@@ -7,11 +7,12 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
 import FormStepHeader from '../form-stepper/FormStepHeader';
 import FormStepItems from '../form-stepper/FormStepItems';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'FormWrapper',
   components: { FormStepItems, FormStepHeader },
   data() {
@@ -24,7 +25,7 @@ export default {
       this.stepIndex = this.stepIndex + 1;
     },
   },
-};
+});
 </script>
 
 <style scoped>

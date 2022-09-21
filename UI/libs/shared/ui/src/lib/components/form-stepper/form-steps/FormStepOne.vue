@@ -88,10 +88,10 @@
   </div>
 </template>
 
-<script>
-import { addPersonalInfoAction } from '../../../helpers/storeHelpers/personalInfoActions';
+<script lang="ts">
+import { addPersonalInfoAction } from '@shared-ui/helpers/storeHelpers/personalInfoActions';
 import AliasDialog from '../../dialogs/AliasDialog';
-import { addAliasesAction } from '../../../helpers/storeHelpers/aliasActions';
+import { addAliasesAction } from '@shared-ui/helpers/storeHelpers/aliasActions';
 import AliasTable from '../../tables/AliasTable';
 
 export default {

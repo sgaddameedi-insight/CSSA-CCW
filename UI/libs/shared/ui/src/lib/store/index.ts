@@ -1,21 +1,28 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { publicApplicationModule } from './publicApplicationModule';
-import aliasModule from './modules/alias';
-import applicationModule from './modules/application';
-import citizenshipModule from './modules/citizenship';
-import contactModule from './modules/contact';
-import currentAddressModule from './modules/currentAddress';
-import differentMailingModule from './modules/differentMailing';
-import DOBModule from './modules/DOB';
-import employmentModule from './modules/employment';
-import idModule from './modules/id';
-import personalInfoModule from './modules/personalInfo';
-import previousAddressModule from './modules/previousAddress';
-import userModule from './modules/user';
-import weaponsModule from './modules/weapons';
+import aliasModule from '@shared-ui/store/modules/alias';
+import applicationModule from '@shared-ui/store/modules/application';
+import citizenshipModule from '@shared-ui/store/modules/citizenship';
+import contactModule from '@shared-ui/store/modules/contact';
+import currentAddressModule from '@shared-ui/store/modules/currentAddress';
+import differentMailingModule from '@shared-ui/store/modules/differentMailing';
+import DOBModule from '@shared-ui/store/modules/DOB';
+import employmentModule from '@shared-ui/store/modules/employment';
+import idModule from '@shared-ui/store/modules/id';
+import personalInfoModule from '@shared-ui/store/modules/personalInfo';
+import previousAddressModule from '@shared-ui/store/modules/previousAddress';
+import userModule from '@shared-ui/store/modules/user';
+import weaponsModule from '@shared-ui/store/modules/weapons';
 
 Vue.use(Vuex);
+
+/**
+ * Below are the default state the both the admin and pulic site will need.
+ * To add application specific modules create the modules in the shared store and then bring in the modules
+ * in the store/index in the core- <name>/store
+ * @type {Store<unknown>}
+ */
 
 export const store = new Vuex.Store({
   modules: {

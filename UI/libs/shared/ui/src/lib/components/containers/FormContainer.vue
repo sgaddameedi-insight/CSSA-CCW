@@ -4,7 +4,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import FormWrapper from '../wrappers/FormWrapper';
 export default {
   name: 'FormContainer',

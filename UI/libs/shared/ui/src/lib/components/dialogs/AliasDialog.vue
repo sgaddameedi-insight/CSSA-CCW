@@ -52,11 +52,18 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
+
+export default defineComponent({
   name: 'AliasDialog',
   props: {
-    saveAlias: Function,
+    saveAlias: {
+      type: Function as PropType<(alias: any) => void>,
+      default: alias => {
+        return;
+      },
+    },
   },
   data() {
     return {
@@ -77,7 +84,7 @@ export default {
       this.dialog = false;
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
