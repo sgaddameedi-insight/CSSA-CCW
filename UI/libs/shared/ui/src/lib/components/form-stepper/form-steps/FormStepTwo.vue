@@ -70,9 +70,7 @@ import { defineComponent, PropType } from 'vue';
 import { Citizenship, DOB, Id } from '@shared-ui/types/defualtTypes';
 import { validateForm } from '@shared-ui/validators/form-validators/formStepTwoValidators';
 import FormErrorAlert from '@shared-ui/components/alerts/FormErrorAlert.vue';
-import { addIdAction } from '@shared-ui/helpers/storeHelpers/idActions';
-import { addCitizenshipAction } from '@shared-ui/helpers/storeHelpers/citizenActions';
-import { addDOBAction } from '@shared-ui/helpers/storeHelpers/DOBActions';
+import { addIdAction, addDOBAction, addCitizenshipAction } from '@shared-ui/helpers/storeHelpers/storeActions';
 
 export default defineComponent({
   name: 'FormStepTwo',
