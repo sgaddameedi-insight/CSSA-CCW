@@ -6,14 +6,13 @@
 
 <script lang="ts">
 import FormWrapper from '../wrappers/FormWrapper';
-
 export default {
   name: 'FormContainer',
   components: { FormWrapper },
 };
 </script>
 
-<style  lang='scss' scoped>
+<style lang="scss" scoped>
 .form-container {
   min-height: 50%;
 }
