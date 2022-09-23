@@ -34,3 +34,13 @@ export type PersonalInfo = {
   ssn: string;
   maritalStatus: string;
 };
+
+export type AddressInfo = {
+  addressLine1: string,
+  addressLine2: string,
+  city: string,
+  county: string,
+  state: string,
+  zip: string,
+  country: string
+}

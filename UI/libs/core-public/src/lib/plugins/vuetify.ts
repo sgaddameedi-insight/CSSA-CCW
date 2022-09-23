@@ -13,15 +13,17 @@ export const vuetify = new Vuetify({
   theme: {
     themes: {
       light: {
-        primary: colors.lightBlue.darken1,
-        accent: colors.blueGrey.lighten5,
-        secondary: colors.blue.darken3,
-        error: colors.red.accent3,
+        primary: colors.blue.darken1,
+        accent: colors.blueGrey.darken3,
+        secondary: colors.blue.darken2,
+        error: colors.red.darken4,
+        text: colors.grey.darken4,
+        info: colors.blue.darken2
       },
       dark: {
         primary: colors.blue.darken3,
         secondary: colors.green,
-        error: colors.red.accent3,
+        error: colors.red.accent4,
         anchor: colors.blueGrey.darken4,
       },
     },

@@ -196,7 +196,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 .subHeader {
   font-size: 1.5rem;
 }

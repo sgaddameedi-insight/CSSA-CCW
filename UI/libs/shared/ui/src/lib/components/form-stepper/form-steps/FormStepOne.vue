@@ -144,7 +144,7 @@
     </div>
     <div class="form-btn-container">
       <v-btn
-        color="secondary mr-2"
+        color="success mr-2"
         @click="handleSubmit"
         :disabled="!valid"
       >
@@ -153,7 +153,7 @@
       <!-- TODO: this needs to save to save the current state to local storage or call the api to save in
       the db
        -->
-      <v-btn color="info mr-2">Save and Exit</v-btn>
+      <v-btn color="secondary mr-2">Save and Exit</v-btn>
       <!-- TODO: Make this return to the home page with out saving the form at all -->
       <v-btn color="error mr-2"> Cancel</v-btn>
     </div>
@@ -185,15 +185,14 @@ export default defineComponent({
     };
   },
   computed: {
-    ssnConfirmError(): Array<string> {
-      const errors: Array<string> = [];
+    ssnConfirmError():string | boolean {
       if (this.ssnConfirm !== '' && this.ssnConfirm !== this.personalInfo.ssn) {
-        errors.push("SSN's do not match");
+        return "SSN's do not match"
       }
       if (this.ssnConfirm === '') {
-        errors.push('SSN confirm can not be empty');
+        return 'SSN confirm can not be empty';
       }
-      return errors;
+      return false
     },
   },
 
