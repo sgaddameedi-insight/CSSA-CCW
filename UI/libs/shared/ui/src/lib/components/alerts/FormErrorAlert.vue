@@ -11,7 +11,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'FormErrorDialog',
   props: {
-    errors: Array<string>,
+    errors: Array<string>
   },
 });
 </script>

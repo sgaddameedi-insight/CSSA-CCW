@@ -10,3 +10,19 @@
 .v-snack:not(.v-snack--centered):not(.v-snack--top) {
   bottom: 50px;
 }
+
+.theme--light.v-sheet .v-subheader{
+  color: black;
+}
+.theme--light.v-sheet {
+  color: black;
+}
+
+.theme--light.v-input {
+  color: #111;
+}
+
+.theme--light.v-input input{
+  color: #111111;
+}
+
