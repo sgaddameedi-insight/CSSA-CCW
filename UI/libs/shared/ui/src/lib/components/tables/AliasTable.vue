@@ -1,6 +1,6 @@
 <template>
   <v-simple-table class="my-3">
-    <template #default>
+    <template v-slot:default>
       <thead>
         <tr>
           <th>Previous Last name</th>
@@ -44,7 +44,9 @@ import { Alias } from '@shared-ui/types/defualtTypes';
 export default defineComponent({
   name: 'AliasTable',
   props: {
-    aliases: Array<Alias>,
+    aliases: Array<Alias>
   },
 });
 </script>
+
+<style lang='scss' scoped></style>
