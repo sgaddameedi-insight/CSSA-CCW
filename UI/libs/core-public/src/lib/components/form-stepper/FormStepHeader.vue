@@ -25,7 +25,10 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'FormStepHeader',
   props: {
-    stepIndex: Number,
+    stepIndex: {
+      type:Number,
+      default: 1
+    },
   },
 });
 </script>

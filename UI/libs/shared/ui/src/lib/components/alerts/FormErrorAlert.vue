@@ -9,11 +9,13 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'FormErrorDialog',
+  name: 'FormErrorAlert',
   props: {
-    errors: Array<string>
+    errors: {
+      type: Array<string>,
+      default: () => []
+    }
   },
 });
 </script>
 
-<style scoped></style>

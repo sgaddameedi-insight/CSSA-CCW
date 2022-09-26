@@ -4,8 +4,11 @@
   </div>
 </template>
 
+
 <script lang="ts">
-import FormContainer from '@shared-ui/components/containers/FormContainer.vue';
+
+import FormContainer from '@core-public/components/containers/FormContainer.vue';
+
 export default {
   name: 'FormView',
   components: { FormContainer },

@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts">
-import FormStepHeader from '../form-stepper/FormStepHeader';
-import FormStepItems from '../form-stepper/FormStepItems';
+import FormStepHeader from '../form-stepper/FormStepHeader.vue';
+import FormStepItems from '../form-stepper/FormStepItems.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

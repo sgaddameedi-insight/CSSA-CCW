@@ -39,9 +39,10 @@
 </template>
 
 <script lang="ts">
-import FormStepOne from '../form-stepper/form-steps/FormStepOne';
-import FormStepTwo from '@shared-ui/components/form-stepper/form-steps/FormStepTwo.vue';
-import FormStepThree from '@shared-ui/components/form-stepper/form-steps/FormStepThree.vue';
+import FormStepOne from './form-steps/FormStepOne.vue';
+import FormStepTwo from '@core-public/components/form-stepper/form-steps/FormStepTwo.vue';
+import FormStepThree from '@core-public/components/form-stepper/form-steps/FormStepThree.vue';
+
 export default {
   name: 'FormStepItems',
   components: { FormStepThree, FormStepOne, FormStepTwo },
@@ -51,3 +52,4 @@ export default {
   },
 };
 </script>
+

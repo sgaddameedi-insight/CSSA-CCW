@@ -1,9 +1,15 @@
 <template>
   <div>
     <v-dialog v-model="dialog">
+
       <template #activator="{ on, attrs }">
-        <v-btn color="primary my-5" v-bind="attrs" v-on="on"> Add Alias </v-btn>
+        <v-btn
+          color="primary my-5"
+          v-bind="attrs"
+          v-on="on"
+        > Add Alias </v-btn>
       </template>
+
       <div class="alias-container">
         <v-form>
           <v-row>
