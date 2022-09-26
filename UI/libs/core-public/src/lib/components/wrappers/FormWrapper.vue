@@ -17,12 +17,13 @@ export default defineComponent({
   components: { FormStepItems, FormStepHeader },
   data() {
     return {
-      stepIndex: 3,
+      stepIndex: 1,
     };
   },
   methods: {
     handleNextSection() {
       this.stepIndex = this.stepIndex + 1;
+      console.log(this.stepIndex)
     },
   },
 });

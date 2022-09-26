@@ -9,7 +9,7 @@
     </v-stepper-content>
 
     <v-stepper-content step="3">
-      <FormStepThree :handle-next-section='handleNextSection'/>
+      <FormStepThree :handle-next-section="handleNextSection" />
     </v-stepper-content>
 
     <v-stepper-content step="4">
@@ -39,9 +39,9 @@
 </template>
 
 <script lang="ts">
-import FormStepOne from './form-steps/FormStepOne.vue';
-import FormStepTwo from '@core-public/components/form-stepper/form-steps/FormStepTwo.vue';
-import FormStepThree from '@core-public/components/form-stepper/form-steps/FormStepThree.vue';
+import FormStepOne from '@shared-ui/components/form-steps/FormStepOne.vue';
+import FormStepTwo from '@shared-ui/components/form-steps/FormStepTwo.vue';
+import FormStepThree from '@shared-ui/components/form-steps/FormStepThree.vue';
 
 export default {
   name: 'FormStepItems',
