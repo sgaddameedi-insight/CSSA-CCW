@@ -44,3 +44,8 @@ export type AddressInfo = {
   zip: string,
   country: string
 }
+
+export type RadioOptions = {
+  label: string,
+  value: string | boolean
+}

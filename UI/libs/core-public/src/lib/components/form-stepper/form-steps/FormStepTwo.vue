@@ -11,11 +11,11 @@
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="id.idNumber"
-            label="Id number"
+          <TextInput
+            :label="'Id number'"
+            :target="'idNumber'"
             :rules="[v => !!v || 'Id  number is required']"
-            required
+            @input='(v,t) => {handleInput(v,t)}'
           />
         </v-col>
 
@@ -24,11 +24,11 @@
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="id.issuingState"
-            label=" Issuing State"
+          <TextInput
+            :label="'Issuing State'"
+            :target="'issuingState'"
             :rules="[v => !!v || 'Issuing state is required']"
-            required
+            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
       </v-row>
@@ -61,22 +61,23 @@
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="DOBInfo.birthCity"
-            label="Birth city"
+          <TextInput
+            :label="'Birth city'"
+            :target="'birthCity'"
             :rules="[v => !!v || 'Birth city cannot be blank']"
-            required
+            @input="(v,t) => {handleInput(v,t)}"
           />
-          <v-text-field
-            v-model="DOBInfo.birthState"
-            label="Birth state"
+          <TextInput
+            :label="'Birth state'"
+            :target="'birthState'"
             :rules="[v => !!v || 'Birth state cannot be blank']"
+            @input="(v,t) => {handleInput(v,t)}"
           />
-          <v-text-field
-            v-model="DOBInfo.birthCountry"
-            label="Birth country"
-            required
+          <TextInput
+            :label="'Birth country'"
+            :target="'birthCountry'"
             :rules="[v => !!v || 'Birth country cannot be blank']"
+            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
       </v-row>
@@ -89,23 +90,13 @@
           cols="6"
           md="5"
           sm="3"
+          class="pl-5"
         >
-          <v-radio-group
-            class="ml-5"
-            row
-            v-model="citizenshipInfo.citizen"
-            label="Citizen"
-          >
-            <v-radio
-              label="Yes"
-              :value="true"
-            />
-
-            <v-radio
-              label="No"
-              :value="false"
-            />
-          </v-radio-group>
+          <RadioGroupInput
+            :label="'Citizen'"
+            :target="'citizen'"
+            :options="[{label: 'Yes', value:true}, {label: 'No', value:false}]"
+          />
 
           <v-alert
             dense
@@ -162,9 +153,12 @@
 import { mapActions } from 'vuex';
 import { defineComponent, PropType } from 'vue';
 import { Citizenship, DOB, Id } from '@shared-ui/types/defualtTypes';
+import TextInput from '@shared-ui/components/inputs/TextInput.vue';
+import RadioGroupInput from '@shared-ui/components/inputs/RadioGroupInput.vue';
 
 export default defineComponent({
   name: 'FormStepTwo',
+  components: { RadioGroupInput, TextInput },
   props: {
     handleNextSection: {
       type: Function as PropType<() => void>,
@@ -186,6 +180,30 @@ export default defineComponent({
       addDOB: 'addDOB',
       addCitizenship: 'addCitizenshipInfo',
     }),
+    handleInput(value, target){
+      switch(target){
+        case 'idNumber':
+          this.id.idNumber = value
+          break
+        case "issuingState":
+          this.id.issuingState = value
+          break
+        case "birthCity":
+          this.DOBInfo.birthCity = value
+          break
+        case "birthState":
+          this.DOBInfo.birthState = value
+          break
+        case "birthCountry":
+          this.DOBInfo.birthCountry = value
+          break
+        case "citizen":
+          this.citizenshipInfo.citizen = value
+          break
+        default:
+          return
+      }
+    },
     handleSubmit() {
       this.addId(this.id);
       this.addDOB(this.DOBInfo);
