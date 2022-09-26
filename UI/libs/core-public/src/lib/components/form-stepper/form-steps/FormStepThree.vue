@@ -10,10 +10,11 @@
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="address.addressLine1"
-            label="Address line 1"
+          <TextInput
+            :label="'Address line 1'"
             :rules="[ v => !!v || 'Address line 1 cannot be blank']"
+            :target="'addressLine1'"
+            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
 
@@ -22,9 +23,10 @@
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="address.addressLine2"
-            label="Address line 2"
+          <TextInput
+            :label="'Address line 2'"
+            :target="'addressLine2'"
+            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
       </v-row>
@@ -35,10 +37,11 @@
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="address.city"
-            label="City"
+          <TextInput
+            :label="'City'"
+            :target="'city'"
             :rules="[ v => !!v || ' City cannot be blank']"
+            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
 
@@ -47,22 +50,35 @@
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="address.state"
-            label="State"
-            :rules="[ v => !!v || 'State cannot be blank&quot']"
+          <TextInput
+            :label="'State'"
+            :target="'state'"
+            :rules="[ v => !!v || 'State cannot be blank']"
+            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
-
+<v-col
+          cols="6"
+          md="5"
+          sm="3"
+        >
+          <TextInput
+            :label="'County'"
+            :target="'county'"
+            :rules="[ v => !!v || 'County cannot be blank']"
+            @input="(v,t) => {handleInput(v,t)}"
+          />
+        </v-col>
         <v-col
           cols="6"
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="address.zip"
-            label="Zip"
-            :rules="[ v => !!v || 'Zip cannot be blank&quot']"
+          <TextInput
+            :label="'Zip'"
+            :target="'zip'"
+            :rules="[ v => !!v || 'Zip cannot be blank']"
+            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
 
@@ -91,10 +107,11 @@
 import { AddressInfo } from '@shared-ui/types/defualtTypes';
 import { defineComponent, PropType } from 'vue';
 import PreviousAddressDialog from '@shared-ui/components/dialogs/PreviousAddressDialog.vue';
+import TextInput from '@shared-ui/components/inputs/TextInput.vue';
 
 export default defineComponent( {
   name: 'FormStepThree',
-  components: { PreviousAddressDialog },
+  components: { TextInput, PreviousAddressDialog },
   props: {
     handleNextSection: {
       type: Function as PropType<() => void>,
@@ -111,7 +128,34 @@ export default defineComponent( {
   methods:{
      getPreviousAddressFromDialog(address: AddressInfo){
        this.previousAddress.push(address)
-     }
+     },
+    handleInput(value, target){
+        switch(target){
+          case "addressLine1":
+            this.address.addressLine1 = value
+            break
+          case "addressLine2":
+            this.address.addressLine2 = value
+            break
+          case "city":
+            this.address.city = value
+            break
+          case "state":
+            this.address.state = value
+            break
+          case "zip":
+            this.address.zip = value
+            break
+          case "county":
+            this.address.county = value
+            break
+          case "country":
+            this.address.country = value
+            break
+          default:
+            return
+        }
+    }
   }
 });
 </script>

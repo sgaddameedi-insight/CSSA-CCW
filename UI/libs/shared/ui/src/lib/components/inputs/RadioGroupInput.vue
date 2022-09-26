@@ -14,8 +14,8 @@
       <v-radio
         v-for='(option, i) in options'
         :key="i"
-        :label="option"
-        :value="option"
+        :label="option.label"
+        :value="option.value"
       />
     </v-radio-group>
 
@@ -32,8 +32,8 @@
       <v-radio
         v-for='(option, i) in options'
         :key="i"
-        :label="option"
-        :value="option"
+        :label="option.label"
+        :value="option.value"
       />
     </v-radio-group>
   </div>
@@ -41,6 +41,7 @@
 
 <script lang='ts'>
 import { defineComponent } from 'vue';
+import { RadioOptions } from '@shared-ui/types/defualtTypes';
 
 export default defineComponent( {
   name: 'RadioGroupInput',
@@ -49,7 +50,7 @@ export default defineComponent( {
   }),
   props: {
     options: {
-      type: Array<string>,
+      type: Array<RadioOptions>,
       default: () => []
     },
     label: {

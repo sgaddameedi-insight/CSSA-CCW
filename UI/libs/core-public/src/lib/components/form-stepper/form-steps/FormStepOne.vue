@@ -124,7 +124,7 @@
         >
           <RadioGroupInput
             :label="'Marital status'"
-            :options="['married', 'single']"
+            :options="[{label: 'Married', value:'married'}, {label:'Single', value:'single'}]"
             :hint="'Marital Status is required'"
             :layout="'row'"
             :target="'maritalStatus'"

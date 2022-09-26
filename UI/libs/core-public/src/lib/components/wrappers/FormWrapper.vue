@@ -17,7 +17,7 @@ export default defineComponent({
   components: { FormStepItems, FormStepHeader },
   data() {
     return {
-      stepIndex: 1,
+      stepIndex: 3,
     };
   },
   methods: {
