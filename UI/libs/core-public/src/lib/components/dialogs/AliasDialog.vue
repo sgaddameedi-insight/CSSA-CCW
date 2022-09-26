@@ -1,19 +1,21 @@
 <template>
   <div>
     <v-dialog v-model="dialog">
-
       <template #activator="{ on, attrs }">
         <v-btn
           color="primary my-5"
           v-bind="attrs"
           v-on="on"
-        > Add Alias </v-btn>
+        >
+          Add Alias
+        </v-btn>
       </template>
 
       <div class="alias-container">
         <v-form
           ref="form"
           v-model="valid"
+          class="form-container"
         >
           <v-row>
             <v-col
@@ -132,6 +134,7 @@ export default defineComponent({
         courtFileNumber: '',
       } as Alias,
       dialog: false,
+      valid: false,
     };
   },
   methods: {
@@ -158,5 +161,9 @@ export default defineComponent({
   display: flex;
   width: 75%;
   justify-content: flex-end;
+}
+
+.form-container{
+  width: 90%;
 }
 </style>

@@ -13,7 +13,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(address, index) in addresses" :key="index">
+        <tr
+          v-for="(address, index) in addresses"
+          :key="index"
+        >
           <td>
             {{ address.addressLine1 }}
           </td>

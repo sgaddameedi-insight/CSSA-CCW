@@ -57,7 +57,7 @@
             @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
-<v-col
+        <v-col
           cols="6"
           md="5"
           sm="3"
@@ -87,19 +87,44 @@
           md="5"
           sm="3"
         >
-          <v-text-field
-            v-model="address.country"
-            label="Country"
+          <TextInput
+            :label="'Country'"
+            :target="'country'"
             :rules="[ v => !!v || 'Country cannot be blank']"
+            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
       </v-row>
-
-      <v-row>
+      <v-divider/>
+      <v-subheader class="sub-header font-weight-bold">
+        Previous address
+      </v-subheader>
+      <div class="previous-address-container">
         <address-table :addresses="previousAddress" />
         <PreviousAddressDialog :get-previous-address-from-dialog="getPreviousAddressFromDialog" />
-      </v-row>
+      </div>
     </v-form>
+      <div class="form-btn-container">
+      <v-btn
+        color="success mr-2"
+        @click="handleSubmit"
+        :disabled="!valid"
+      >
+        Continue
+      </v-btn>
+      <!-- TODO: this needs to save to save the current state to local storage or call the api to save in
+      the db
+       -->
+
+      <v-btn color="secondary mr-2">
+        Save and Exit
+      </v-btn>
+
+      <!-- TODO: Make this return to the home page with out saving the form at all -->
+      <v-btn color="error mr-2">
+        Cancel
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -110,6 +135,7 @@ import { defineComponent, PropType } from 'vue';
 import PreviousAddressDialog from '../../dialogs/PreviousAddressDialog.vue';
 import TextInput from '@shared-ui/components/inputs/TextInput.vue';
 import AddressTable from '@shared-ui/components/tables/AddressTable.vue';
+import { mapActions } from 'vuex';
 
 export default defineComponent( {
   name: 'FormStepThree',
@@ -128,6 +154,11 @@ export default defineComponent( {
     }
   },
   methods:{
+    ...mapActions({
+     addCurrentAddress: "addCurrentAddressInfo",
+     addPreviousAddress: "addPreviousAddress"
+
+    }),
      getPreviousAddressFromDialog(address: AddressInfo){
        this.previousAddress.push(address)
      },
@@ -157,6 +188,11 @@ export default defineComponent( {
           default:
             return
         }
+    },
+    handleSubmit(){
+      this.addCurrentAddress(this.address)
+      this.addPreviousAddress(this.previousAddress)
+      this.handleNextSection()
     }
   }
 });
@@ -165,5 +201,12 @@ export default defineComponent( {
 <style lang='scss' scoped>
 .subHeader {
   font-size: 1.5rem;
+}
+.previous-address-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 </style>

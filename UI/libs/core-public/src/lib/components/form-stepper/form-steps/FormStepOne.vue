@@ -244,6 +244,7 @@ export default defineComponent({
           break
         case "maritalStatus":
           this.personalInfo.maritalStatus = value
+          break
         default:
           return
       }
@@ -263,4 +264,10 @@ export default defineComponent({
   width: 90%;
   justify-content: flex-end;
 }
+.alias-components-container{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: flex-start;
+  align-items: flex-start; }
 </style>
