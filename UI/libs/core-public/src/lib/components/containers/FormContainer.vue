@@ -5,14 +5,17 @@
 </template>
 
 <script lang="ts">
-import FormWrapper from '../wrappers/FormWrapper';
+import FormWrapper from '@core-public/components/wrappers/FormWrapper.vue';
+
 export default {
   name: 'FormContainer',
   components: { FormWrapper },
 };
 </script>
 
+
 <style lang="scss" scoped>
+
 .form-container {
   min-height: 50%;
 }

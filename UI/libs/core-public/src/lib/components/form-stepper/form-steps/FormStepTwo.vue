@@ -11,11 +11,11 @@
           md="5"
           sm="3"
         >
-          <TextInput
-            :label="'Id number'"
-            :target="'idNumber'"
+          <v-text-field
+            v-model="id.idNumber"
+            label="Id number"
             :rules="[v => !!v || 'Id  number is required']"
-            @input='(v,t) => {handleInput(v,t)}'
+            required
           />
         </v-col>
 
@@ -24,11 +24,11 @@
           md="5"
           sm="3"
         >
-          <TextInput
-            :label="'Issuing State'"
-            :target="'issuingState'"
+          <v-text-field
+            v-model="id.issuingState"
+            label=" Issuing State"
             :rules="[v => !!v || 'Issuing state is required']"
-            @input="(v,t) => {handleInput(v,t)}"
+            required
           />
         </v-col>
       </v-row>
@@ -61,23 +61,22 @@
           md="5"
           sm="3"
         >
-          <TextInput
-            :label="'Birth city'"
-            :target="'birthCity'"
+          <v-text-field
+            v-model="DOBInfo.birthCity"
+            label="Birth city"
             :rules="[v => !!v || 'Birth city cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            required
           />
-          <TextInput
-            :label="'Birth state'"
-            :target="'birthState'"
+          <v-text-field
+            v-model="DOBInfo.birthState"
+            label="Birth state"
             :rules="[v => !!v || 'Birth state cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
           />
-          <TextInput
-            :label="'Birth country'"
-            :target="'birthCountry'"
+          <v-text-field
+            v-model="DOBInfo.birthCountry"
+            label="Birth country"
+            required
             :rules="[v => !!v || 'Birth country cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
           />
         </v-col>
       </v-row>
@@ -90,13 +89,23 @@
           cols="6"
           md="5"
           sm="3"
-          class="pl-5"
         >
-          <RadioGroupInput
-            :label="'Citizen'"
-            :target="'citizen'"
-            :options="[{label: 'Yes', value:true}, {label: 'No', value:false}]"
-          />
+          <v-radio-group
+            class="ml-5"
+            row
+            v-model="citizenshipInfo.citizen"
+            label="Citizen"
+          >
+            <v-radio
+              label="Yes"
+              :value="true"
+            />
+
+            <v-radio
+              label="No"
+              :value="false"
+            />
+          </v-radio-group>
 
           <v-alert
             dense
@@ -153,12 +162,9 @@
 import { mapActions } from 'vuex';
 import { defineComponent, PropType } from 'vue';
 import { Citizenship, DOB, Id } from '@shared-ui/types/defualtTypes';
-import TextInput from '@shared-ui/components/inputs/TextInput.vue';
-import RadioGroupInput from '@shared-ui/components/inputs/RadioGroupInput.vue';
 
 export default defineComponent({
   name: 'FormStepTwo',
-  components: { RadioGroupInput, TextInput },
   props: {
     handleNextSection: {
       type: Function as PropType<() => void>,
@@ -180,30 +186,6 @@ export default defineComponent({
       addDOB: 'addDOB',
       addCitizenship: 'addCitizenshipInfo',
     }),
-    handleInput(value, target){
-      switch(target){
-        case 'idNumber':
-          this.id.idNumber = value
-          break
-        case "issuingState":
-          this.id.issuingState = value
-          break
-        case "birthCity":
-          this.DOBInfo.birthCity = value
-          break
-        case "birthState":
-          this.DOBInfo.birthState = value
-          break
-        case "birthCountry":
-          this.DOBInfo.birthCountry = value
-          break
-        case "citizen":
-          this.citizenshipInfo.citizen = value
-          break
-        default:
-          return
-      }
-    },
     handleSubmit() {
       this.addId(this.id);
       this.addDOB(this.DOBInfo);
@@ -214,7 +196,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang='scss' scoped>
+<style scoped>
 .subHeader {
   font-size: 1.5rem;
 }
