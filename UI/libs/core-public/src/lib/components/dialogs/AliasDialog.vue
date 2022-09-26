@@ -11,9 +11,16 @@
       </template>
 
       <div class="alias-container">
-        <v-form>
+        <v-form
+          ref="form"
+          v-model="valid"
+        >
           <v-row>
-            <v-col>
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
               <v-text-field
                 v-model="alias.prevLastName"
                 label="Previous Last Name"
@@ -21,7 +28,11 @@
                 required
               />
             </v-col>
-            <v-col>
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
               <v-text-field
                 v-model="alias.prevFirstName"
                 label="Previous First name"
@@ -30,27 +41,66 @@
               />
             </v-col>
 
-            <v-col>
-              <v-text-field v-model="alias.prevMiddleName" label="Previous Middle name" />
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
+              <v-text-field
+                v-model="alias.prevMiddleName"
+                label="Previous Middle name"
+              />
             </v-col>
           </v-row>
           <v-row>
-            <v-col>
-              <v-text-field v-model="alias.cityWhereChanged" label="City Where Changed" />
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
+              <v-text-field
+                v-model="alias.cityWhereChanged"
+                label="City Where Changed"
+              />
             </v-col>
 
-            <v-col>
-              <v-text-field v-model="alias.stateWhereChanged" label="State or Region where changed" />
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
+              <v-text-field
+                v-model="alias.stateWhereChanged"
+                label="State or Region where changed"
+              />
             </v-col>
 
-            <v-col>
-              <v-text-field v-model="alias.courtFileNumber" label="Court File number" />
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
+              <v-text-field
+                v-model="alias.courtFileNumber"
+                label="Court File number"
+              />
             </v-col>
           </v-row>
         </v-form>
         <div class="mt-2 btn-container">
-          <v-btn color="success" @click="handleSubmit" class="mr-2"> Submit </v-btn>
-          <v-btn color="error" @click="dialog = false"> Close </v-btn>
+          <v-btn
+            color="success"
+            @click="handleSubmit"
+            class="mr-2"
+          >
+            Submit
+          </v-btn>
+          <v-btn
+            color="error"
+            @click="dialog = false"
+          >
+            Close
+          </v-btn>
         </div>
       </div>
     </v-dialog>

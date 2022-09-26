@@ -96,6 +96,7 @@
       </v-row>
 
       <v-row>
+        <address-table :addresses="previousAddress" />
         <PreviousAddressDialog :get-previous-address-from-dialog="getPreviousAddressFromDialog" />
       </v-row>
     </v-form>
@@ -106,12 +107,13 @@
 
 import { AddressInfo } from '@shared-ui/types/defualtTypes';
 import { defineComponent, PropType } from 'vue';
-import PreviousAddressDialog from '@shared-ui/components/dialogs/PreviousAddressDialog.vue';
+import PreviousAddressDialog from '../../dialogs/PreviousAddressDialog.vue';
 import TextInput from '@shared-ui/components/inputs/TextInput.vue';
+import AddressTable from '@shared-ui/components/tables/AddressTable.vue';
 
 export default defineComponent( {
   name: 'FormStepThree',
-  components: { TextInput, PreviousAddressDialog },
+  components: { AddressTable, TextInput, PreviousAddressDialog },
   props: {
     handleNextSection: {
       type: Function as PropType<() => void>,

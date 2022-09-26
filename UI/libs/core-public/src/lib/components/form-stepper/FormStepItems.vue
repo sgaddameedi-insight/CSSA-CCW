@@ -39,9 +39,9 @@
 </template>
 
 <script lang="ts">
-import FormStepOne from '@shared-ui/components/form-steps/FormStepOne.vue';
-import FormStepTwo from '@shared-ui/components/form-steps/FormStepTwo.vue';
-import FormStepThree from '@shared-ui/components/form-steps/FormStepThree.vue';
+import FormStepOne from './form-steps/FormStepOne.vue';
+import FormStepTwo from './form-steps/FormStepTwo.vue';
+import FormStepThree from './form-steps/FormStepThree.vue';
 
 export default {
   name: 'FormStepItems',

@@ -64,7 +64,17 @@
                 :rules="[ v => !!v || 'State cannot be blank&quot']"
               />
             </v-col>
-
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
+              <v-text-field
+                v-model="address.county"
+                label="County"
+                :rules="[ v => !!v || 'County cannot be blank']"
+              />
+            </v-col>
             <v-col
               cols="6"
               md="5"

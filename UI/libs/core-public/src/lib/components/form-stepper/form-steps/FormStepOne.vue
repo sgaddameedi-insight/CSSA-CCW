@@ -171,7 +171,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { mapActions } from 'vuex';
-import AliasDialog from '@shared-ui/components/dialogs/AliasDialog.vue';
+import AliasDialog from '@core-public/components/dialogs/AliasDialog.vue';
 import AliasTable from '@shared-ui/components/tables/AliasTable.vue';
 import { Alias, PersonalInfo } from '@shared-ui/types/defualtTypes';
 import TextInput from '@shared-ui/components/inputs/TextInput.vue';
