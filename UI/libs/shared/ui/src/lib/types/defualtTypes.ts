@@ -36,16 +36,16 @@ export type PersonalInfo = {
 };
 
 export type AddressInfo = {
-  addressLine1: string,
-  addressLine2: string,
-  city: string,
-  county: string,
-  state: string,
-  zip: string,
-  country: string
-}
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  county: string;
+  state: string;
+  zip: string;
+  country: string;
+};
 
 export type RadioOptions = {
-  label: string,
-  value: string | boolean
-}
+  label: string;
+  value: string | boolean;
+};
