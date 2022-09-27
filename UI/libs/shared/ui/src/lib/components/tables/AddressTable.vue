@@ -3,13 +3,13 @@
     <template #default>
       <thead>
         <tr>
-          <th>Address line 1</th>
-          <th>Address line 2</th>
-          <th>City</th>
-          <th>State </th>
-          <th>County</th>
-          <th>Zip</th>
-          <th>Country</th>
+          <th>{{ $t(' Address line 1') }}</th>
+          <th>{{ $t('Address line 2') }}</th>
+          <th>{{ $t('City') }}</th>
+          <th>{{ $t('State') }}</th>
+          <th>{{ $t('County') }}</th>
+          <th>{{ $t('Zip') }}</th>
+          <th>{{ $t('Country') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -44,17 +44,17 @@
   </v-simple-table>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue';
-import { AddressInfo } from '@shared-ui/types/defualtTypes';
+<script lang="ts">
+import { defineComponent } from "vue";
+import { AddressInfo } from "@shared-ui/types/defualtTypes";
 
 export default defineComponent({
   name: 'AddressTable',
-  props:{
+  props: {
     addresses: {
-     type: Array<AddressInfo>,
-     default: () => []
-    }
-  }
+      type: Array<AddressInfo>,
+      default: () => [],
+    },
+  },
 });
 </script>

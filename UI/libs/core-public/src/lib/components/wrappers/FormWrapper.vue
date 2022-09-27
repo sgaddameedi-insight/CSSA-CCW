@@ -17,9 +17,9 @@
 </template>
 
 <script lang="ts">
-import FormStepHeader from '../form-stepper/FormStepHeader.vue';
-import FormStepItems from '../form-stepper/FormStepItems.vue';
-import { defineComponent } from 'vue';
+import FormStepHeader from "../form-stepper/FormStepHeader.vue";
+import FormStepItems from "../form-stepper/FormStepItems.vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: 'FormWrapper',
@@ -32,7 +32,7 @@ export default defineComponent({
   methods: {
     handleNextSection() {
       this.stepIndex = this.stepIndex + 1;
-      console.log(this.stepIndex)
+      console.log(this.stepIndex);
     },
   },
 });

@@ -1,3 +1,11 @@
+<i18n>
+{
+  "en": {
+    " continue ": " continue "
+  }
+}
+</i18n>
+
 <template>
   <v-stepper-items>
     <v-stepper-content step="1">
@@ -58,15 +66,20 @@
     </v-stepper-content>
 
     <v-stepper-content step="9">
-      <v-btn color="secondary" @click="handleNextSection"> continue </v-btn>
+      <v-btn
+        color="secondary"
+        @click="handleNextSection"
+      >
+        {{ $t(' continue ') }}
+      </v-btn>
     </v-stepper-content>
   </v-stepper-items>
 </template>
 
 <script lang="ts">
-import FormStepOne from './form-steps/FormStepOne.vue';
-import FormStepTwo from './form-steps/FormStepTwo.vue';
-import FormStepThree from './form-steps/FormStepThree.vue';
+import FormStepOne from "./form-steps/FormStepOne.vue";
+import FormStepTwo from "./form-steps/FormStepTwo.vue";
+import FormStepThree from "./form-steps/FormStepThree.vue";
 
 export default {
   name: 'FormStepItems',

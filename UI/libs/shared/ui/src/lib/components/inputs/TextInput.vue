@@ -7,34 +7,32 @@
   />
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue';
+<script lang="ts">
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: 'TextInput',
-  data:()=> ({
-    value: ''
-
+  data: () => ({
+    value: '',
   }),
   props: {
     label: {
       type: String,
-      default: ''
+      default: '',
     },
-    rules:{
-     type: Array<any>,
-     default: () => []
+    rules: {
+      type: Array<any>,
+      default: () => [],
     },
-    target:{
+    target: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   methods: {
-    handleBlur(event){
-     this.$emit("input", event.target.value, this.target)
-    }
-  }
+    handleBlur(event) {
+      this.$emit('input', event.target.value, this.target);
+    },
+  },
 });
 </script>
-

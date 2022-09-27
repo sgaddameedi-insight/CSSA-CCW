@@ -7,7 +7,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          Add Alias
+          {{ $t('Add Alias') }}
         </v-btn>
       </template>
 
@@ -95,13 +95,13 @@
             @click="handleSubmit"
             class="mr-2"
           >
-            Submit
+            {{ $t('Submit') }}
           </v-btn>
           <v-btn
             color="error"
             @click="dialog = false"
           >
-            Close
+            {{ $t('Close') }}
           </v-btn>
         </div>
       </div>
@@ -110,8 +110,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { Alias } from '@shared-ui/types/defualtTypes';
+import { defineComponent, PropType } from "vue";
+import { Alias } from "@shared-ui/types/defualtTypes";
 
 export default defineComponent({
   name: 'AliasDialog',
@@ -163,7 +163,7 @@ export default defineComponent({
   justify-content: flex-end;
 }
 
-.form-container{
+.form-container {
   width: 90%;
 }
 </style>

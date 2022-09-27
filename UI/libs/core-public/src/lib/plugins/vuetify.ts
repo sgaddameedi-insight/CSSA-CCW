@@ -1,8 +1,8 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-import colors from 'vuetify/lib/util/colors';
-import '@mdi/font/css/materialdesignicons.css';
-import '@shared-ui/assets/vuetify.css';
+import Vue from "vue";
+import Vuetify from "vuetify";
+import colors from "vuetify/lib/util/colors";
+import "@mdi/font/css/materialdesignicons.css";
+import "@shared-ui/assets/vuetify.css";
 
 Vue.use(Vuetify);
 
@@ -18,7 +18,7 @@ export const vuetify = new Vuetify({
         secondary: colors.blue.darken2,
         error: colors.red.darken4,
         text: colors.grey.darken4,
-        info: colors.blue.darken2
+        info: colors.blue.darken2,
       },
       dark: {
         primary: colors.blue.darken3,

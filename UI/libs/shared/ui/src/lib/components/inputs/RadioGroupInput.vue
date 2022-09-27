@@ -12,7 +12,7 @@
       @blur="handleBlur"
     >
       <v-radio
-        v-for='(option, i) in options'
+        v-for="(option, i) in options"
         :key="i"
         :label="option.label"
         :value="option.value"
@@ -30,7 +30,7 @@
       @blur="handleBlur"
     >
       <v-radio
-        v-for='(option, i) in options'
+        v-for="(option, i) in options"
         :key="i"
         :label="option.label"
         :value="option.value"
@@ -39,49 +39,48 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue';
-import { RadioOptions } from '@shared-ui/types/defualtTypes';
+<script lang="ts">
+import { defineComponent } from "vue";
+import { RadioOptions } from "@shared-ui/types/defualtTypes";
 
-export default defineComponent( {
+export default defineComponent({
   name: 'RadioGroupInput',
   data: () => ({
-    value: ""
+    value: '',
   }),
   props: {
     options: {
       type: Array<RadioOptions>,
-      default: () => []
+      default: () => [],
     },
     label: {
       type: String,
-      default: ""
+      default: '',
     },
     layout: {
       type: String,
-      default: ""
+      default: '',
     },
     hint: {
       type: String,
-      default: ''
+      default: '',
     },
     target: {
       type: String,
-      default: ''
+      default: '',
     },
   },
-  methods:{
-    handleChange(){
-      this.$emit("input", this.value, this.target)
+  methods: {
+    handleChange() {
+      this.$emit('input', this.value, this.target);
     },
-    handleBlur(){
-      console.log(this.$refs.radioGroup)
+    handleBlur() {
+      console.log(this.$refs.radioGroup);
 
-      if(!this.value){
-        console.log(this.$refs.radioGroup)
+      if (!this.value) {
+        console.log(this.$refs.radioGroup);
       }
-    }
-  }
+    },
+  },
 });
 </script>
-

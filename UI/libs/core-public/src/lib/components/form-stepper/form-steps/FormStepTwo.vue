@@ -4,7 +4,9 @@
       ref="form"
       v-model="valid"
     >
-      <v-subheader class="subHeader font-weight-bold"> Id Information </v-subheader>
+      <v-subheader class="subHeader font-weight-bold">
+        {{ $t('Id Information') }}
+      </v-subheader>
       <v-row>
         <v-col
           cols="6"
@@ -14,7 +16,11 @@
           <TextInput
             :label="'Id number'"
             :target="'idNumber'"
-            @input="(v,t) => {handleInput(v,t)}"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
             :rules="[v => !!v || 'Id  number is required']"
             required
           />
@@ -29,13 +35,19 @@
             :label="' Issuing State'"
             :target="'issuingState'"
             :rules="[v => !!v || 'Issuing state is required']"
-            @input="(v,t) => {handleInput(v,t)}"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
       </v-row>
 
       <v-divider />
-      <v-subheader class="subHeader font-weight-bold"> Date of birth </v-subheader>
+      <v-subheader class="subHeader font-weight-bold">
+        {{ $t(' Date of birt') }}
+      </v-subheader>
 
       <v-row>
         <v-col
@@ -53,7 +65,7 @@
             type="error"
             v-if="!DOBInfo.DOB"
           >
-            Date of birth cannot be blank!
+            {{ $t('Date of birth cannot be blank!') }}
           </v-alert>
         </v-col>
 
@@ -66,25 +78,39 @@
             :label="'Birth city'"
             :target="'birthCity'"
             :rules="[v => !!v || 'Birth city cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
           <TextInput
             :label="'Birth state'"
             :target="'birthState'"
             :rules="[v => !!v || 'Birth state cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
           <TextInput
             :label="'Birth country'"
             :target="'birthCountry'"
             :rules="[v => !!v || 'Birth country cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
       </v-row>
 
       <v-divider />
-      <v-subheader class="subHeader font-weight-bold"> Citizenship Information </v-subheader>
+      <v-subheader class="subHeader font-weight-bold">
+        {{ $t('Citizenship Information') }}
+      </v-subheader>
 
       <v-row>
         <v-col
@@ -96,9 +122,16 @@
           <RadioGroupInput
             :label="'Citizen'"
             :layout="'row'"
-            :options="[{label: 'Yes', value: true}, {label: 'No', value: false}]"
+            :options="[
+              { label: 'Yes', value: true },
+              { label: 'No', value: false },
+            ]"
             :target="'citizen'"
-            @input="(v,t) => {handleInput(v,t)}"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
           <v-alert
             dense
@@ -106,7 +139,7 @@
             type="error"
             v-if="!citizenshipInfo.citizen"
           >
-            Must select Yes or No!
+            {{ $t('Must select Yes or No!') }}
           </v-alert>
         </v-col>
 
@@ -127,44 +160,27 @@
             type="error"
             v-if="!citizenshipInfo.militaryStatus"
           >
-            Must select a status!
+            {{ $t('Must select a status') }}
           </v-alert>
         </v-col>
       </v-row>
     </v-form>
     <v-divider />
-    <div class="form-btn-container">
-      <v-btn
-        :disabled="!valid"
-        color="secondary mr-2"
-        @click="handleSubmit"
-      >
-        Continue
-      </v-btn>
-      <!-- TODO: this needs to save to save the current state to local storage or call the api to save in
-      the db
-       -->
-      <v-btn color="info mr-2">
-        Save and Exit
-      </v-btn>
-      <!-- TODO: Make this return to the home page with out saving the form at all -->
-      <v-btn color="error mr-2">
-        Cancel
-      </v-btn>
-    </div>
+    <FormButtonContainer @submit="handleSubmit" />
   </div>
 </template>
 
 <script lang="ts">
-import { mapActions } from 'vuex';
-import { defineComponent, PropType } from 'vue';
-import { Citizenship, DOB, Id } from '@shared-ui/types/defualtTypes';
-import TextInput from '@shared-ui/components/inputs/TextInput.vue';
-import RadioGroupInput from '@shared-ui/components/inputs/RadioGroupInput.vue';
+import { mapActions } from "vuex";
+import { defineComponent, PropType } from "vue";
+import { Citizenship, DOB, Id } from "@shared-ui/types/defualtTypes";
+import TextInput from "@shared-ui/components/inputs/TextInput.vue";
+import RadioGroupInput from "@shared-ui/components/inputs/RadioGroupInput.vue";
+import FormButtonContainer from "@core-public/components/containers/FormButtonContainer.vue";
 
 export default defineComponent({
   name: 'FormStepTwo',
-  components: { RadioGroupInput, TextInput },
+  components: { FormButtonContainer, RadioGroupInput, TextInput },
   props: {
     handleNextSection: {
       type: Function as PropType<() => void>,
@@ -186,29 +202,29 @@ export default defineComponent({
       addDOB: 'addDOB',
       addCitizenship: 'addCitizenshipInfo',
     }),
-    handleInput(value, target){
-      switch (target){
-        case "idNumber":
-          this.id.idNumber = value
-          break
-        case "issuingState":
-          this.id.issuingState = value
-          break
-        case "birthCity":
-          this.DOBInfo.birthCity = value
-          break
-        case "birthState":
-          this.DOBInfo.birthState = value
-          break
-        case "birthCountry":
-          this.DOBInfo.birthCountry = value
-          break
-        case "citizen":
-          this.citizenshipInfo.citizen = value
-          this.$forceUpdate()
-          break
+    handleInput(value, target) {
+      switch (target) {
+        case 'idNumber':
+          this.id.idNumber = value;
+          break;
+        case 'issuingState':
+          this.id.issuingState = value;
+          break;
+        case 'birthCity':
+          this.DOBInfo.birthCity = value;
+          break;
+        case 'birthState':
+          this.DOBInfo.birthState = value;
+          break;
+        case 'birthCountry':
+          this.DOBInfo.birthCountry = value;
+          break;
+        case 'citizen':
+          this.citizenshipInfo.citizen = value;
+          this.$forceUpdate();
+          break;
         default:
-          return
+          return;
       }
     },
     handleSubmit() {
@@ -221,15 +237,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .subHeader {
   font-size: 1.5rem;
-}
-
-.form-btn-container {
-  width: 90%;
-  margin-top: 0.5rem;
-  display: flex;
-  justify-content: flex-end;
 }
 </style>

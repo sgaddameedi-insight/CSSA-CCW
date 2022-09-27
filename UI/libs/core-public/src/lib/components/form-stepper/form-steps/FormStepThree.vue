@@ -12,9 +12,13 @@
         >
           <TextInput
             :label="'Address line 1'"
-            :rules="[ v => !!v || 'Address line 1 cannot be blank']"
+            :rules="[v => !!v || 'Address line 1 cannot be blank']"
             :target="'addressLine1'"
-            @input="(v,t) => {handleInput(v,t)}"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
 
@@ -26,7 +30,11 @@
           <TextInput
             :label="'Address line 2'"
             :target="'addressLine2'"
-            @input="(v,t) => {handleInput(v,t)}"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
       </v-row>
@@ -40,8 +48,12 @@
           <TextInput
             :label="'City'"
             :target="'city'"
-            :rules="[ v => !!v || ' City cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            :rules="[v => !!v || ' City cannot be blank']"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
 
@@ -53,8 +65,12 @@
           <TextInput
             :label="'State'"
             :target="'state'"
-            :rules="[ v => !!v || 'State cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            :rules="[v => !!v || 'State cannot be blank']"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
         <v-col
@@ -65,8 +81,12 @@
           <TextInput
             :label="'County'"
             :target="'county'"
-            :rules="[ v => !!v || 'County cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            :rules="[v => !!v || 'County cannot be blank']"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
         <v-col
@@ -77,8 +97,12 @@
           <TextInput
             :label="'Zip'"
             :target="'zip'"
-            :rules="[ v => !!v || 'Zip cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            :rules="[v => !!v || 'Zip cannot be blank']"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
 
@@ -90,115 +114,108 @@
           <TextInput
             :label="'Country'"
             :target="'country'"
-            :rules="[ v => !!v || 'Country cannot be blank']"
-            @input="(v,t) => {handleInput(v,t)}"
+            :rules="[v => !!v || 'Country cannot be blank']"
+            @input="
+              (v, t) => {
+                handleInput(v, t);
+              }
+            "
           />
         </v-col>
       </v-row>
-      <v-divider/>
+      <v-divider />
       <v-subheader class="sub-header font-weight-bold">
-        Previous address
+        {{ $t(' Previous Address') }}
       </v-subheader>
       <div class="previous-address-container">
         <address-table :addresses="previousAddress" />
-        <PreviousAddressDialog :get-previous-address-from-dialog="getPreviousAddressFromDialog" />
+        <PreviousAddressDialog
+          :get-previous-address-from-dialog="getPreviousAddressFromDialog"
+        />
       </div>
+      <FormButtonContainer
+        :valid="valid"
+        @submit="handleSubmit"
+      />
     </v-form>
-      <div class="form-btn-container">
-      <v-btn
-        color="success mr-2"
-        @click="handleSubmit"
-        :disabled="!valid"
-      >
-        Continue
-      </v-btn>
-      <!-- TODO: this needs to save to save the current state to local storage or call the api to save in
-      the db
-       -->
-
-      <v-btn color="secondary mr-2">
-        Save and Exit
-      </v-btn>
-
-      <!-- TODO: Make this return to the home page with out saving the form at all -->
-      <v-btn color="error mr-2">
-        Cancel
-      </v-btn>
-    </div>
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
+import { AddressInfo } from "@shared-ui/types/defualtTypes";
+import { defineComponent, PropType } from "vue";
+import PreviousAddressDialog from "../../dialogs/PreviousAddressDialog.vue";
+import TextInput from "@shared-ui/components/inputs/TextInput.vue";
+import AddressTable from "@shared-ui/components/tables/AddressTable.vue";
+import { mapActions } from "vuex";
+import FormButtonContainer from "@core-public/components/containers/FormButtonContainer.vue";
 
-import { AddressInfo } from '@shared-ui/types/defualtTypes';
-import { defineComponent, PropType } from 'vue';
-import PreviousAddressDialog from '../../dialogs/PreviousAddressDialog.vue';
-import TextInput from '@shared-ui/components/inputs/TextInput.vue';
-import AddressTable from '@shared-ui/components/tables/AddressTable.vue';
-import { mapActions } from 'vuex';
-
-export default defineComponent( {
+export default defineComponent({
   name: 'FormStepThree',
-  components: { AddressTable, TextInput, PreviousAddressDialog },
+  components: {
+    FormButtonContainer,
+    AddressTable,
+    TextInput,
+    PreviousAddressDialog,
+  },
   props: {
     handleNextSection: {
       type: Function as PropType<() => void>,
       default: () => null,
     },
   },
-  data(){
+  data() {
     return {
       address: {} as AddressInfo,
       previousAddress: [] as Array<AddressInfo>,
-      valid: false
-    }
+      valid: false,
+    };
   },
-  methods:{
+  methods: {
     ...mapActions({
-     addCurrentAddress: "addCurrentAddressInfo",
-     addPreviousAddress: "addPreviousAddress"
-
+      addCurrentAddress: 'addCurrentAddressInfo',
+      addPreviousAddress: 'addPreviousAddress',
     }),
-     getPreviousAddressFromDialog(address: AddressInfo){
-       this.previousAddress.push(address)
-     },
-    handleInput(value, target){
-        switch(target){
-          case "addressLine1":
-            this.address.addressLine1 = value
-            break
-          case "addressLine2":
-            this.address.addressLine2 = value
-            break
-          case "city":
-            this.address.city = value
-            break
-          case "state":
-            this.address.state = value
-            break
-          case "zip":
-            this.address.zip = value
-            break
-          case "county":
-            this.address.county = value
-            break
-          case "country":
-            this.address.country = value
-            break
-          default:
-            return
-        }
+    getPreviousAddressFromDialog(address: AddressInfo) {
+      this.previousAddress.push(address);
     },
-    handleSubmit(){
-      this.addCurrentAddress(this.address)
-      this.addPreviousAddress(this.previousAddress)
-      this.handleNextSection()
-    }
-  }
+    handleInput(value, target) {
+      switch (target) {
+        case 'addressLine1':
+          this.address.addressLine1 = value;
+          break;
+        case 'addressLine2':
+          this.address.addressLine2 = value;
+          break;
+        case 'city':
+          this.address.city = value;
+          break;
+        case 'state':
+          this.address.state = value;
+          break;
+        case 'zip':
+          this.address.zip = value;
+          break;
+        case 'county':
+          this.address.county = value;
+          break;
+        case 'country':
+          this.address.country = value;
+          break;
+        default:
+          return;
+      }
+    },
+    handleSubmit() {
+      this.addCurrentAddress(this.address);
+      this.addPreviousAddress(this.previousAddress);
+      this.handleNextSection();
+    },
+  },
 });
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .subHeader {
   font-size: 1.5rem;
 }
