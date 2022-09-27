@@ -3,7 +3,7 @@ main:
 - '*'
 
 # Add 'IaC' label to any change to src files within the source dir EXCEPT for the docs sub-folder
-API:
+IaC:
 - any: ['Deployment/**/*']
 
 # Add 'API' label to any change to src files within the source dir EXCEPT for the docs sub-folder
