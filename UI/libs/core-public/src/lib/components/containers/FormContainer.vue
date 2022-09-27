@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import FormWrapper from "@core-public/components/wrappers/FormWrapper.vue";
+import FormWrapper from '@core-public/components/wrappers/FormWrapper.vue';
 
 export default {
   name: 'FormContainer',

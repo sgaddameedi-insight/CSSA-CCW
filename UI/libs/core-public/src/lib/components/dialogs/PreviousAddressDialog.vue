@@ -121,8 +121,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { AddressInfo } from "@shared-ui/types/defualtTypes";
+import { defineComponent, PropType } from 'vue';
+import { AddressInfo } from '@shared-ui/types/defualtTypes';
 
 export default defineComponent({
   name: 'PreviousAddressDialog',

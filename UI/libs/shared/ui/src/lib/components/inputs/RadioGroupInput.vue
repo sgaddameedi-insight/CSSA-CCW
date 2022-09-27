@@ -40,8 +40,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { RadioOptions } from "@shared-ui/types/defualtTypes";
+import { defineComponent } from 'vue';
+import { RadioOptions } from '@shared-ui/types/defualtTypes';
 
 export default defineComponent({
   name: 'RadioGroupInput',

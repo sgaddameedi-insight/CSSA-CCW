@@ -110,8 +110,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { Alias } from "@shared-ui/types/defualtTypes";
+import { defineComponent, PropType } from 'vue';
+import { Alias } from '@shared-ui/types/defualtTypes';
 
 export default defineComponent({
   name: 'AliasDialog',

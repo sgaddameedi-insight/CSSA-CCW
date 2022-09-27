@@ -166,17 +166,20 @@
       </v-row>
     </v-form>
     <v-divider />
-    <FormButtonContainer @submit="handleSubmit" />
+    <FormButtonContainer
+      :valid="valid"
+      @submit="handleSubmit"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { mapActions } from "vuex";
-import { defineComponent, PropType } from "vue";
-import { Citizenship, DOB, Id } from "@shared-ui/types/defualtTypes";
-import TextInput from "@shared-ui/components/inputs/TextInput.vue";
-import RadioGroupInput from "@shared-ui/components/inputs/RadioGroupInput.vue";
-import FormButtonContainer from "@core-public/components/containers/FormButtonContainer.vue";
+import { mapActions } from 'vuex';
+import { defineComponent, PropType } from 'vue';
+import { Citizenship, DOB, Id } from '@shared-ui/types/defualtTypes';
+import TextInput from '@shared-ui/components/inputs/TextInput.vue';
+import RadioGroupInput from '@shared-ui/components/inputs/RadioGroupInput.vue';
+import FormButtonContainer from '@core-public/components/containers/FormButtonContainer.vue';
 
 export default defineComponent({
   name: 'FormStepTwo',

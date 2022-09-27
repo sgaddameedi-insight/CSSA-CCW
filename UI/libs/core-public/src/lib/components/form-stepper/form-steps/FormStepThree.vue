@@ -142,13 +142,13 @@
 </template>
 
 <script lang="ts">
-import { AddressInfo } from "@shared-ui/types/defualtTypes";
-import { defineComponent, PropType } from "vue";
-import PreviousAddressDialog from "../../dialogs/PreviousAddressDialog.vue";
-import TextInput from "@shared-ui/components/inputs/TextInput.vue";
-import AddressTable from "@shared-ui/components/tables/AddressTable.vue";
-import { mapActions } from "vuex";
-import FormButtonContainer from "@core-public/components/containers/FormButtonContainer.vue";
+import { AddressInfo } from '@shared-ui/types/defualtTypes';
+import { defineComponent, PropType } from 'vue';
+import PreviousAddressDialog from '../../dialogs/PreviousAddressDialog.vue';
+import TextInput from '@shared-ui/components/inputs/TextInput.vue';
+import AddressTable from '@shared-ui/components/tables/AddressTable.vue';
+import { mapActions } from 'vuex';
+import FormButtonContainer from '@core-public/components/containers/FormButtonContainer.vue';
 
 export default defineComponent({
   name: 'FormStepThree',

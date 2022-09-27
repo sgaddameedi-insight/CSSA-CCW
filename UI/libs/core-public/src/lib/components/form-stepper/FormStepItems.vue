@@ -77,9 +77,9 @@
 </template>
 
 <script lang="ts">
-import FormStepOne from "./form-steps/FormStepOne.vue";
-import FormStepTwo from "./form-steps/FormStepTwo.vue";
-import FormStepThree from "./form-steps/FormStepThree.vue";
+import FormStepOne from './form-steps/FormStepOne.vue';
+import FormStepTwo from './form-steps/FormStepTwo.vue';
+import FormStepThree from './form-steps/FormStepThree.vue';
 
 export default {
   name: 'FormStepItems',

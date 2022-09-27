@@ -187,7 +187,10 @@
       <AliasTable :aliases="aliases" />
       <AliasDialog :save-alias="getAliasFromDialog" />
     </div>
-    <FormButtonContainer @submit="handleSubmit" />
+    <FormButtonContainer
+      :valid="valid"
+      @submit="handleSubmit"
+    />
     <FormErrorAlert
       v-if="errors.length > 0"
       :errors="errors"
@@ -196,16 +199,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { mapActions } from "vuex";
-import AliasDialog from "@core-public/components/dialogs/AliasDialog.vue";
-import AliasTable from "@shared-ui/components/tables/AliasTable.vue";
-import { Alias, PersonalInfo } from "@shared-ui/types/defualtTypes";
-import TextInput from "@shared-ui/components/inputs/TextInput.vue";
-import CheckboxInput from "@shared-ui/components/inputs/CheckboxInput.vue";
-import RadioGroupInput from "@shared-ui/components/inputs/RadioGroupInput.vue";
-import FormErrorAlert from "@shared-ui/components/alerts/FormErrorAlert.vue";
-import FormButtonContainer from "@core-public/components/containers/FormButtonContainer.vue";
+import { defineComponent, PropType } from 'vue';
+import { mapActions } from 'vuex';
+import AliasDialog from '@core-public/components/dialogs/AliasDialog.vue';
+import AliasTable from '@shared-ui/components/tables/AliasTable.vue';
+import { Alias, PersonalInfo } from '@shared-ui/types/defualtTypes';
+import TextInput from '@shared-ui/components/inputs/TextInput.vue';
+import CheckboxInput from '@shared-ui/components/inputs/CheckboxInput.vue';
+import RadioGroupInput from '@shared-ui/components/inputs/RadioGroupInput.vue';
+import FormErrorAlert from '@shared-ui/components/alerts/FormErrorAlert.vue';
+import FormButtonContainer from '@core-public/components/containers/FormButtonContainer.vue';
 
 export default defineComponent({
   name: 'FormStepOne',
