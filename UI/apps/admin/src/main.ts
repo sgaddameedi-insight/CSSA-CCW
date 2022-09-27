@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import AdminApp from './AdminApp.vue';
-import { router, vuetify, store, i18n } from '@cssa-ccw/core-admin';
+import { i18n, router, store, vuetify } from '@cssa-ccw/core-admin';
 import wb from './registerServiceWorker';
 
 Vue.config.productionTip = false;

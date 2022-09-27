@@ -10,10 +10,19 @@
           {{ $t('Add Alias') }}
         </v-btn>
       </template>
+
       <div class="alias-container">
-        <v-form>
+        <v-form
+          ref="form"
+          v-model="valid"
+          class="form-container"
+        >
           <v-row>
-            <v-col>
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
               <v-text-field
                 v-model="alias.prevLastName"
                 label="Previous Last Name"
@@ -21,7 +30,11 @@
                 required
               />
             </v-col>
-            <v-col>
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
               <v-text-field
                 v-model="alias.prevFirstName"
                 label="Previous First name"
@@ -30,7 +43,11 @@
               />
             </v-col>
 
-            <v-col>
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
               <v-text-field
                 v-model="alias.prevMiddleName"
                 label="Previous Middle name"
@@ -38,21 +55,33 @@
             </v-col>
           </v-row>
           <v-row>
-            <v-col>
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
               <v-text-field
                 v-model="alias.cityWhereChanged"
                 label="City Where Changed"
               />
             </v-col>
 
-            <v-col>
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
               <v-text-field
                 v-model="alias.stateWhereChanged"
                 label="State or Region where changed"
               />
             </v-col>
 
-            <v-col>
+            <v-col
+              cols="6"
+              md="5"
+              sm="3"
+            >
               <v-text-field
                 v-model="alias.courtFileNumber"
                 label="Court File number"
@@ -82,13 +111,16 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { Alias } from '@shared-ui/types/defualtTypes';
 
 export default defineComponent({
   name: 'AliasDialog',
   props: {
     saveAlias: {
-      type: Function as PropType<(alias) => void>,
-      default: () => null,
+      type: Function as PropType<(alias: Alias) => void>,
+      default: () => {
+        return;
+      },
     },
   },
   data() {
@@ -100,8 +132,9 @@ export default defineComponent({
         cityWhereChanged: '',
         stateWhereChanged: '',
         courtFileNumber: '',
-      },
+      } as Alias,
       dialog: false,
+      valid: false,
     };
   },
   methods: {
@@ -116,18 +149,21 @@ export default defineComponent({
 <style lang="scss" scoped>
 .alias-container {
   display: flex;
-  width: 90%;
-  height: 50vh;
   flex-direction: column;
-  align-items: center;
+  height: 50vh;
+  width: 90%;
   justify-content: center;
+  align-items: center;
   background: aliceblue;
   border-radius: 12px;
 }
-
 .btn-container {
   display: flex;
   width: 75%;
   justify-content: flex-end;
+}
+
+.form-container {
+  width: 90%;
 }
 </style>

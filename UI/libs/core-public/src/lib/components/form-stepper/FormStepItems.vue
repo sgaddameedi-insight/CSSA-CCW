@@ -1,3 +1,11 @@
+<i18n>
+{
+  "en": {
+    " continue ": " continue "
+  }
+}
+</i18n>
+
 <template>
   <v-stepper-items>
     <v-stepper-content step="1">
@@ -5,21 +13,11 @@
     </v-stepper-content>
 
     <v-stepper-content step="2">
-      <v-btn
-        color="secondary"
-        @click="handleNextSection"
-      >
-        {{ $t('continue') }}
-      </v-btn>
+      <FormStepTwo :handle-next-section="handleNextSection" />
     </v-stepper-content>
 
     <v-stepper-content step="3">
-      <v-btn
-        color="secondary"
-        @click="handleNextSection"
-      >
-        {{ $t('continue') }}
-      </v-btn>
+      <FormStepThree :handle-next-section="handleNextSection" />
     </v-stepper-content>
 
     <v-stepper-content step="4">
@@ -72,17 +70,20 @@
         color="secondary"
         @click="handleNextSection"
       >
-        {{ $t('continue') }}
+        {{ $t(' continue ') }}
       </v-btn>
     </v-stepper-content>
   </v-stepper-items>
 </template>
 
 <script lang="ts">
-import FormStepOne from '../form-stepper/form-steps/FormStepOne';
+import FormStepOne from './form-steps/FormStepOne.vue';
+import FormStepTwo from './form-steps/FormStepTwo.vue';
+import FormStepThree from './form-steps/FormStepThree.vue';
+
 export default {
   name: 'FormStepItems',
-  components: { FormStepOne },
+  components: { FormStepThree, FormStepOne, FormStepTwo },
   props: {
     stepIndex: {
       type: Number,
