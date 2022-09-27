@@ -13,23 +13,48 @@
     </v-stepper-content>
 
     <v-stepper-content step="4">
-      <v-btn color="secondary" @click="handleNextSection"> continue </v-btn>
+      <v-btn
+        color="secondary"
+        @click="handleNextSection"
+      >
+        {{ $t('continue') }}
+      </v-btn>
     </v-stepper-content>
 
     <v-stepper-content step="5">
-      <v-btn color="secondary" @click="handleNextSection"> continue </v-btn>
+      <v-btn
+        color="secondary"
+        @click="handleNextSection"
+      >
+        {{ $t('continue') }}
+      </v-btn>
     </v-stepper-content>
 
     <v-stepper-content step="6">
-      <v-btn color="secondary" @click="handleNextSection"> continue </v-btn>
+      <v-btn
+        color="secondary"
+        @click="handleNextSection"
+      >
+        {{ $t('continue') }}
+      </v-btn>
     </v-stepper-content>
 
     <v-stepper-content step="7">
-      <v-btn color="secondary" @click="handleNextSection"> continue </v-btn>
+      <v-btn
+        color="secondary"
+        @click="handleNextSection"
+      >
+        {{ $t('continue') }}
+      </v-btn>
     </v-stepper-content>
 
     <v-stepper-content step="8">
-      <v-btn color="secondary" @click="handleNextSection"> continue </v-btn>
+      <v-btn
+        color="secondary"
+        @click="handleNextSection"
+      >
+        {{ $t('continue') }}
+      </v-btn>
     </v-stepper-content>
 
     <v-stepper-content step="9">
@@ -47,8 +72,14 @@ export default {
   name: 'FormStepItems',
   components: { FormStepThree, FormStepOne, FormStepTwo },
   props: {
-    stepIndex: Number,
-    handleNextSection: Function,
+    stepIndex: {
+      type: Number,
+      default: 0,
+    },
+    handleNextSection: {
+      type: Function,
+      default: null,
+    },
   },
 };
 </script>
