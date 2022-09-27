@@ -23,17 +23,17 @@
       v-if="layout !== 'row'"
       ref="radioGroup"
       v-model="value"
-      :hint="hint"
+      :hint="$t(hint)"
       persistent-hint
-      :label="label"
+      :label="$t(label)"
       @change="handleChange"
       @blur="handleBlur"
     >
       <v-radio
         v-for="(option, i) in options"
         :key="i"
-        :label="option.label"
-        :value="option.value"
+        :label="$t(option.label)"
+        :value="$t(option.value)"
       />
     </v-radio-group>
   </div>

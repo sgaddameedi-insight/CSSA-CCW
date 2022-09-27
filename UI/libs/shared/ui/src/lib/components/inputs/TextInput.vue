@@ -1,7 +1,7 @@
 <template>
   <v-text-field
     v-model="value"
-    :label="label"
+    :label="$t(label)"
     :rules="rules"
     @blur="handleBlur"
   />

@@ -1,7 +1,7 @@
 <template>
   <v-checkbox
     v-model="value"
-    :label="label"
+    :label="$t(label)"
     @change="handleBlur"
   />
 </template>
