@@ -141,82 +141,73 @@
   </div>
 </template>
 
-<script lang="ts">
-import { AddressInfo } from '@shared-ui/types/defualtTypes';
-import { defineComponent, PropType } from 'vue';
+<script setup lang="ts">
+import { reactive, ref } from 'vue';
+import { useActions } from 'vuex-composition-helpers';
+import { AddressInfoType } from '@shared-ui/types/defaultTypes';
 import PreviousAddressDialog from '../../dialogs/PreviousAddressDialog.vue';
 import TextInput from '@shared-ui/components/inputs/TextInput.vue';
 import AddressTable from '@shared-ui/components/tables/AddressTable.vue';
-import { mapActions } from 'vuex';
 import FormButtonContainer from '@core-public/components/containers/FormButtonContainer.vue';
 
-export default defineComponent({
-  name: 'FormStepThree',
-  components: {
-    FormButtonContainer,
-    AddressTable,
-    TextInput,
-    PreviousAddressDialog,
-  },
-  props: {
-    handleNextSection: {
-      type: Function as PropType<() => void>,
-      default: () => null,
-    },
-  },
-  data() {
-    return {
-      address: {} as AddressInfo,
-      previousAddress: [] as Array<AddressInfo>,
-      valid: false,
-    };
-  },
-  methods: {
-    ...mapActions({
-      addCurrentAddress: 'addCurrentAddressInfo',
-      addPreviousAddress: 'addPreviousAddress',
-    }),
-    getPreviousAddressFromDialog(address: AddressInfo) {
-      this.previousAddress.push(address);
-    },
-    handleInput(value, target) {
-      switch (target) {
-        case 'addressLine1':
-          this.address.addressLine1 = value;
-          break;
-        case 'addressLine2':
-          this.address.addressLine2 = value;
-          break;
-        case 'city':
-          this.address.city = value;
-          break;
-        case 'state':
-          this.address.state = value;
-          break;
-        case 'zip':
-          this.address.zip = value;
-          break;
-        case 'county':
-          this.address.county = value;
-          break;
-        case 'country':
-          this.address.country = value;
-          break;
-        default:
-          return;
-      }
-    },
-    handleSubmit() {
-      this.addCurrentAddress(this.address);
-      this.addPreviousAddress(this.previousAddress);
-      this.handleNextSection();
-    },
-  },
+export interface FormStepThreeProps {
+  handleNextSection: () => void;
+}
+
+const props = withDefaults(defineProps<FormStepThreeProps>(), {
+  handleNextSection: () => null,
 });
+
+const address = reactive({} as AddressInfoType);
+const previousAddress = ref([] as Array<AddressInfoType>);
+const valid = ref(false);
+
+const { addCurrentAddress, addPreviousAddress } = useActions([
+  'addCurrentAddress',
+  'addPreviousAddress',
+]);
+
+function getPreviousAddressFromDialog(address: AddressInfoType) {
+  previousAddress.value.push(address);
+}
+
+function handleInput(value, target) {
+  switch (target) {
+    case 'addressLine1':
+      address.addressLine1 = value;
+      break;
+    case 'addressLine2':
+      address.addressLine2 = value;
+      break;
+    case 'city':
+      address.city = value;
+      break;
+    case 'state':
+      address.state = value;
+      break;
+    case 'zip':
+      address.zip = value;
+      break;
+    case 'county':
+      address.county = value;
+      break;
+    case 'country':
+      address.country = value;
+      break;
+    default:
+      return;
+  }
+}
+
+function handleSubmit() {
+  addCurrentAddress(address);
+  addPreviousAddress(previousAddress);
+  props.handleNextSection();
+}
 </script>
 
 <style lang="scss" scoped>
-.subHeader {
+.sub-header {
   font-size: 1.5rem;
 }
 .previous-address-container {

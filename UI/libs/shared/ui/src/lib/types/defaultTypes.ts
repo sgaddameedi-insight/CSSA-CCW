@@ -1,4 +1,4 @@
-export type Alias = {
+export type AliasType = {
   prevLastName: string;
   prevFirstName: string;
   prevMiddleName: string;
@@ -7,12 +7,12 @@ export type Alias = {
   courtFileNumber: string;
 };
 
-export type Id = {
+export type IdType = {
   idNumber: string;
   issuingState: string;
 };
 
-export type DOB = {
+export type DOBType = {
   DOB: string;
   birthCity: string;
   birthState: string;
@@ -20,12 +20,12 @@ export type DOB = {
   currentAge: 0;
 };
 
-export type Citizenship = {
+export type CitizenshipType = {
   citizen: boolean;
   militaryStatus: string;
 };
 
-export type PersonalInfo = {
+export type PersonalInfoType = {
   lastName: string;
   firstName: string;
   middleName: string;
@@ -35,7 +35,7 @@ export type PersonalInfo = {
   maritalStatus: string;
 };
 
-export type AddressInfo = {
+export type AddressInfoType = {
   addressLine1: string;
   addressLine2: string;
   city: string;
@@ -45,7 +45,7 @@ export type AddressInfo = {
   country: string;
 };
 
-export type RadioOptions = {
+export type RadioOptionsType = {
   label: string;
   value: string | boolean;
 };

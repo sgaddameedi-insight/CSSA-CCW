@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import PreviousAddressDialog from '@core-public/components/dialogs/PreviousAddressDialog.vue';
 import Vuetify from 'vuetify';
 import { createLocalVue, mount } from '@vue/test-utils';
@@ -11,14 +12,18 @@ describe('PreviousAddressDialog', () => {
   let vuetify;
   let wrapper;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     vuetify = new Vuetify();
     //@ts-ignore
     wrapper = mount(PreviousAddressDialog, {
       localVue,
       vuetify,
       mocks: tMock,
+      data() {
+        return { dialog: true };
+      },
     });
+    await wrapper.find('#add-previous-address-btn').trigger('click');
   });
   afterEach(() => {
     wrapper.destroy();
@@ -28,60 +33,44 @@ describe('PreviousAddressDialog', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it('should render the add button', () => {
+  it('should render the add button', async () => {
     expect(wrapper.find('button').exists()).toBeTruthy();
-    expect(wrapper.find('form').exists()).toBeFalsy();
-  });
-
-  it('Should render the form', async () => {
-    await wrapper.setData({ dialog: true });
     expect(wrapper.find('form').exists()).toBeTruthy();
   });
 
-  it('Should not allow submission', async () => {
-    await wrapper.setData({ dialog: true });
+  it('Should render the form', () => {
+    expect(wrapper.find('form').exists()).toBeTruthy();
+  });
+
+  it('Should not allow submission', () => {
     expect(
       wrapper.find('#pre-address-submit-btn').attributes().disabled
     ).toBeTruthy();
   });
 
-  it('should allow for sumbission', async () => {
+  it('should allow for submission', async () => {
     const newWrapper = mount(PreviousAddressDialog, {
       localVue,
       vuetify,
       mocks: tMock,
-      data() {
-        return {
-          dialog: true,
-          valid: true,
-        };
-      },
     });
+    await newWrapper.find('#add-previous-address-btn').trigger('click');
+    const line1 = newWrapper.find('#address-line-1');
+    await line1.setValue('t');
+    const city = newWrapper.find('#city');
+    await city.setValue('t');
+    const state = newWrapper.find('#state');
+    await state.setValue('t');
+    const county = newWrapper.find('#county');
+    await county.setValue('t');
+    const zip = newWrapper.find('#zip');
+    await zip.setValue('t');
+    const country = newWrapper.find('#country');
+    await country.setValue('t');
+    await newWrapper.vm.$nextTick();
     expect(
-      newWrapper.find('#pre-address-submit-btn').attributes().disabled
-    ).toBeFalsy();
+      newWrapper.find('#pre-address-submit-btn').attributes('disabled')
+    ).toBeUndefined();
     newWrapper.destroy();
-  });
-
-  it('should change to valid on required inputs', () => {
-    const newWrapper = mount(PreviousAddressDialog, {
-      localVue,
-      vuetify,
-      mocks: tMock,
-      data() {
-        return {
-          dialog: true,
-        };
-      },
-    });
-
-    newWrapper.find('#address-line-1').setValue('t');
-    newWrapper.find('#city').setValue('t');
-    newWrapper.find('#state').setValue('t');
-    newWrapper.find('#county').setValue('t');
-    newWrapper.find('#zip').setValue('t');
-    newWrapper.find('#country').setValue('t');
-
-    expect(newWrapper.vm.$data.valid).toBeTruthy();
   });
 });

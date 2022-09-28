@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import TextInput from '@shared-ui/components/inputs/TextInput.vue';
 import Vuetify from 'vuetify';
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils';

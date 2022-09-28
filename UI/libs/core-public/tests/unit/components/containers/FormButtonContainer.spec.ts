@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import FormButtonContainer from '@core-public/components/containers/FormButtonContainer.vue';
 import Vuetify from 'vuetify';
 import { createLocalVue, mount } from '@vue/test-utils';
@@ -18,6 +19,9 @@ describe('FormButtonContainer', () => {
       localVue,
       vuetify,
       mocks: tMock,
+      propsData: {
+        valid: true,
+      },
     });
   });
   afterEach(() => {
@@ -32,8 +36,7 @@ describe('FormButtonContainer', () => {
     expect(wrapper.findAll('button').length).toBe(3);
   });
 
-  it('Should emit on button press', async () => {
-    await wrapper.setData({ valid: true });
+  it('Should emit on button press', () => {
     const button = wrapper.findAll('button').at(0);
     button.trigger('click');
     expect(wrapper.emitted().submit).toHaveLength(1);

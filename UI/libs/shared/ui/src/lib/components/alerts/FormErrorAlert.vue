@@ -15,20 +15,17 @@
   </v-alert>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-
+<script setup lang="ts">
 /**
  * Used to display an error message on an attempted form submission.
  * @param errors takes in an array of string and will display the strings in the error message.
  */
-export default Vue.extend({
-  name: 'FormErrorAlert',
-  props: {
-    errors: {
-      type: Array<string>,
-      default: () => [],
-    },
-  },
+
+export interface FormErrorAlertProps {
+  errors?: Array<string>;
+}
+
+const props = withDefaults(defineProps<FormErrorAlertProps>(), {
+  errors: () => [],
 });
 </script>

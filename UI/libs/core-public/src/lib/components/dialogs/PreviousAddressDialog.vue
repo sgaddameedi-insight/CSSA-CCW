@@ -3,6 +3,7 @@
     <v-dialog v-model="dialog">
       <template #activator="{ on, attrs }">
         <v-btn
+          id="add-previous-address-btn"
           color="primary my-5"
           v-bind="attrs"
           v-on="on"
@@ -128,31 +129,28 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { AddressInfo } from '@shared-ui/types/defualtTypes';
+<script setup lang="ts">
+import { AddressInfoType } from '@shared-ui/types/defaultTypes';
+import { reactive, ref } from 'vue';
 
-export default defineComponent({
-  name: 'PreviousAddressDialog',
-  props: {
-    getPreviousAddressFromDialog: {
-      type: Function as PropType<(address: AddressInfo) => void>,
-      default: () => null,
-    },
-  },
-  data() {
-    return {
-      address: {} as AddressInfo,
-      dialog: false,
-      valid: false,
-    };
-  },
-  methods: {
-    handleSubmit() {
-      this.getPreviousAddressFromDialog(this.address);
-    },
+export interface PreviousAddressDialogProps {
+  getPreviousAddressFromDialog?: (address: AddressInfoType) => void;
+}
+
+const props = withDefaults(defineProps<PreviousAddressDialogProps>(), {
+  getPreviousAddressFromDialog: () => {
+    return;
   },
 });
+
+const address = reactive({} as AddressInfoType);
+let dialog = false;
+const valid = ref(false);
+
+function handleSubmit() {
+  props.getPreviousAddressFromDialog(address);
+  dialog = false;
+}
 </script>
 
 <style lang="scss" scoped>

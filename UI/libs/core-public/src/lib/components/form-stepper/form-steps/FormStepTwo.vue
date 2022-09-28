@@ -4,7 +4,7 @@
       ref="form"
       v-model="valid"
     >
-      <v-subheader class="subHeader font-weight-bold">
+      <v-subheader class="sub-header font-weight-bold">
         {{ $t('Id Information') }}
       </v-subheader>
       <v-row>
@@ -45,7 +45,7 @@
       </v-row>
 
       <v-divider />
-      <v-subheader class="subHeader font-weight-bold">
+      <v-subheader class="sub-header font-weight-bold">
         {{ $t(' Date of birt') }}
       </v-subheader>
 
@@ -108,7 +108,7 @@
       </v-row>
 
       <v-divider />
-      <v-subheader class="subHeader font-weight-bold">
+      <v-subheader class="sub-header font-weight-bold">
         {{ $t('Citizenship Information') }}
       </v-subheader>
 
@@ -173,75 +173,72 @@
   </div>
 </template>
 
-<script lang="ts">
-import { mapActions } from 'vuex';
-import { defineComponent, PropType } from 'vue';
-import { Citizenship, DOB, Id } from '@shared-ui/types/defualtTypes';
+<script setup lang="ts">
+import { getCurrentInstance, reactive, ref } from 'vue';
+import { useActions } from 'vuex-composition-helpers';
+import { CitizenshipType, IdType, IdType } from '@shared-ui/types/defaultTypes';
 import TextInput from '@shared-ui/components/inputs/TextInput.vue';
 import RadioGroupInput from '@shared-ui/components/inputs/RadioGroupInput.vue';
 import FormButtonContainer from '@core-public/components/containers/FormButtonContainer.vue';
 
-export default defineComponent({
-  name: 'FormStepTwo',
-  components: { FormButtonContainer, RadioGroupInput, TextInput },
-  props: {
-    handleNextSection: {
-      type: Function as PropType<() => void>,
-      default: () => null,
-    },
-  },
-  data() {
-    return {
-      id: {} as Id,
-      DOBInfo: {} as DOB,
-      citizenshipInfo: {} as Citizenship,
-      items: ['Active', 'Reserve', 'Discharged', 'Retired', 'N/A'],
-      valid: false,
-    };
-  },
-  methods: {
-    ...mapActions({
-      addId: 'addId',
-      addDOB: 'addDOB',
-      addCitizenship: 'addCitizenshipInfo',
-    }),
-    handleInput(value, target) {
-      switch (target) {
-        case 'idNumber':
-          this.id.idNumber = value;
-          break;
-        case 'issuingState':
-          this.id.issuingState = value;
-          break;
-        case 'birthCity':
-          this.DOBInfo.birthCity = value;
-          break;
-        case 'birthState':
-          this.DOBInfo.birthState = value;
-          break;
-        case 'birthCountry':
-          this.DOBInfo.birthCountry = value;
-          break;
-        case 'citizen':
-          this.citizenshipInfo.citizen = value;
-          this.$forceUpdate();
-          break;
-        default:
-          return;
-      }
-    },
-    handleSubmit() {
-      this.addId(this.id);
-      this.addDOB(this.DOBInfo);
-      this.addCitizenship(this.citizenshipInfo);
-      this.handleNextSection();
-    },
-  },
+export interface FormStepOneProps {
+  handleNextSection: () => void;
+}
+
+const props = withDefaults(defineProps<FormStepOneProps>(), {
+  handleNextSection: () => null,
 });
+
+const id = reactive({} as IdType);
+const DOBInfo = reactive({} as IdType);
+const citizenshipInfo = reactive({} as CitizenshipType);
+const items = ref(['Active', 'Reserve', 'Discharged', 'Retired', 'N/A']);
+const valid = ref(false);
+
+const { addId, addDOB, addCitizenshipInfo } = useActions([
+  'addId',
+  'addDOB',
+  'addCitizenshipInfo',
+]);
+
+const instance = getCurrentInstance();
+
+function handleInput(value, target) {
+  switch (target) {
+    case 'idNumber':
+      id.idNumber = value;
+      break;
+    case 'issuingState':
+      id.issuingState = value;
+      break;
+    case 'birthCity':
+      DOBInfo.birthCity = value;
+      break;
+    case 'birthState':
+      DOBInfo.birthState = value;
+      break;
+    case 'birthCountry':
+      DOBInfo.birthCountry = value;
+      break;
+    case 'citizen':
+      citizenshipInfo.citizen = value;
+      instance?.proxy?.$forceUpdate();
+      break;
+    default:
+      return;
+  }
+}
+
+function handleSubmit() {
+  addId(id);
+  addDOB(DOBInfo);
+  addCitizenshipInfo(citizenshipInfo);
+  props.handleNextSection();
+}
 </script>
 
 <style lang="scss" scoped>
-.subHeader {
+.sub-header {
   font-size: 1.5rem;
 }
 </style>

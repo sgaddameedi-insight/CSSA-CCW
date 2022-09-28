@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Vue from 'vue';
 import AliasTable from '@shared-ui/components/tables/AliasTable.vue';
 import Vuetify from 'vuetify';

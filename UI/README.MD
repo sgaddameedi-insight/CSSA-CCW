@@ -87,11 +87,14 @@ Public application: `public —> core-public —> [shared-ui, shared-utils]`
 
 4. `shared-ui` and `shared-utils` are application independent libraries, meaning it should only contain modular and reusable components without effecting one's design or layout.
 
-4. Please use our automated GIT branching and PR strategy script located at root folder [git.sh](../git.sh) for creating a new branch, rebasing, and rasing PR urls.
+5. Try to adopt Composition API vs Options API since this project is already on Vue 2.7, doing so will make Vue3 migration simple and easier.
 
-5. Make sure to lint, format, unit test and most importantly rebase/squash your code before raising a PR and delete the stale branches once PR is merged.
+6. Please use our automated GIT branching and PR strategy script located at root folder [git.sh](../git.sh) for creating a new branch, rebasing, and rasing PR urls.
+
+7. Make sure to lint, format, unit test and most importantly rebase/squash your code before raising a PR and delete the stale branches once PR is merged.
 
 >[Vue - Patterns](https://learn-vuejs.github.io/vue-patterns/patterns)
+>[Vue - Composition API](https://vuejs.org/guide/typescript/composition-api.html)
 >[Vue - Useful links and Performance](https://learn-vuejs.github.io/vue-patterns/patterns)
 
 `HAPPY CODING! 🎉`
@@ -543,3 +546,10 @@ Now, you can inspect `package.json` to see if the changes make sense and install
 ```
 nx migrate --run-migrations=migrations.json
 ```
+
+#### Cheat Sheet
+
+For any new developers who are adopting Nx workspaces, following cheat sheet should help speed up the development process
+<br>
+
+  ![CCW-UI-Cheat-sheet](./README_CHEETSHEET.png?raw=true "Nx Cheat sheet")

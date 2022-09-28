@@ -22,23 +22,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+export interface FormButtonContainerProps {
+  valid?: boolean;
+}
 
-export default defineComponent({
-  name: 'FormButtonContainer',
-  props: {
-    valid: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  methods: {
-    handleSubmit() {
-      this.$emit('submit');
-    },
-  },
+const props = withDefaults(defineProps<FormButtonContainerProps>(), {
+  valid: false,
 });
+
+const emit = defineEmits(['submit']);
+
+function handleSubmit() {
+  emit('submit');
+}
 </script>
 
 <style lang="scss" scoped>

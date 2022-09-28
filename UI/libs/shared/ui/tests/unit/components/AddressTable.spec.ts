@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Vuetify from 'vuetify';
 import AddressTable from '@shared-ui/components/tables/AddressTable.vue';
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils';

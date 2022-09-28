@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import AliasDialog from '@core-public/components/dialogs/AliasDialog.vue';
 import Vuetify from 'vuetify';
 import { createLocalVue, mount } from '@vue/test-utils';
@@ -23,7 +24,8 @@ describe('AliasDialog', () => {
     wrapper.destroy();
   });
 
-  it('should match the snapshot', () => {
+  it('should match the snapshot', async () => {
+    await wrapper.find('#add-alias-btn').trigger('click');
     expect(wrapper.html()).toMatchSnapshot();
   });
 
@@ -44,6 +46,7 @@ describe('AliasDialog', () => {
         };
       },
     });
+    await onWrapper.find('#add-alias-btn').trigger('click');
     expect(onWrapper.findAll('.v-input').length).toBe(6);
     onWrapper.destroy();
   });
@@ -59,6 +62,7 @@ describe('AliasDialog', () => {
         };
       },
     });
+    await onWrapper.find('#add-alias-btn').trigger('click');
     expect(onWrapper.find('#submit-btn').attributes().disabled).toBeTruthy();
     onWrapper.destroy();
   });
@@ -69,32 +73,16 @@ describe('AliasDialog', () => {
       localVue,
       vuetify,
       mocks: tMock,
-      data() {
-        return {
-          dialog: true,
-          valid: true,
-        };
-      },
     });
-    expect(onWrapper.find('#submit-btn').attributes().disabled).toBeFalsy();
-    onWrapper.destroy();
-  });
-  it('should change valid to true on inputs', async () => {
-    //@ts-ignore
-    const onWrapper = mount(AliasDialog, {
-      localVue,
-      vuetify,
-      mocks: tMock,
-      data() {
-        return {
-          dialog: true,
-          valid: false,
-        };
-      },
-    });
-    onWrapper.find('#last-name').setValue('t');
-    onWrapper.find('#first-name').setValue('t');
-    expect(onWrapper.vm.$data.valid).toBeTruthy();
+    await onWrapper.find('#add-alias-btn').trigger('click');
+    const lastName = onWrapper.find('#last-name');
+    await lastName.setValue('tdfg');
+    const firstName = onWrapper.find('#first-name');
+    await firstName.setValue('tsgsd');
+    await wrapper.vm.$nextTick();
+    expect(
+      onWrapper.find('#submit-btn').attributes('disabled')
+    ).toBeUndefined();
     onWrapper.destroy();
   });
 });

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import CheckboxInput from '@shared-ui/components/inputs/CheckboxInput.vue';
 import Vuetify from 'vuetify';
-import { createLocalVue, shallowMount } from '@vue/test-utils';
+import { createLocalVue, mount } from '@vue/test-utils';
 
 const localVue = createLocalVue();
 const tMock = {
@@ -14,7 +15,7 @@ describe('CheckboxInput', () => {
   beforeEach(() => {
     vuetify = new Vuetify();
     //@ts-ignore
-    wrapper = shallowMount(CheckboxInput, {
+    wrapper = mount(CheckboxInput, {
       localVue,
       vuetify,
       mocks: tMock,
@@ -39,11 +40,8 @@ describe('CheckboxInput', () => {
   });
 
   it('Should emit the correct information', async () => {
-    await wrapper.vm.$nextTick(() => {
-      wrapper.vm.handleChange();
-    });
-    // false is the default value for the component.
-    expect(wrapper.emitted().input[0][0]).toEqual('false');
+    const radioInput = wrapper.find('input[type="checkbox"]');
+    await radioInput.setChecked();
     expect(wrapper.emitted().input[0][1]).toEqual('testTarget');
   });
 });

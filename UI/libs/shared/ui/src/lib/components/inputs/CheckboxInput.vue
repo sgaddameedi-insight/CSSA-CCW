@@ -6,28 +6,23 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 
-export default defineComponent({
-  name: 'CheckboxInput',
-  data: () => ({
-    value: false,
-  }),
-  props: {
-    label: {
-      type: String,
-      default: '',
-    },
-    target: {
-      type: String,
-      default: '',
-    },
-  },
-  methods: {
-    handleChange() {
-      this.$emit('input', `${this.value}`, this.target);
-    },
-  },
+export interface CheckboxInputProps {
+  label: string;
+  target: string;
+}
+
+const props = withDefaults(defineProps<CheckboxInputProps>(), {
+  label: '',
+  target: '',
 });
+
+const emit = defineEmits(['input']);
+const value = ref(false);
+
+function handleChange() {
+  emit('input', value.value, props.target);
+}
 </script>

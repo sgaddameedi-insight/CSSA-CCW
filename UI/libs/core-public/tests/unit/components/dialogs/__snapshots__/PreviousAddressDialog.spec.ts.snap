@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreviousAddressDialog should match the snapshot 1`] = `
+<div><button type="button" class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary my-5" id="add-previous-address-btn" role="button" aria-haspopup="true" aria-expanded="true"><span class="v-btn__content">
+         Add previous address
+      </span></button>
+  <div role="dialog" class="v-dialog__container">
+    <div role="document" tabindex="0" class="v-dialog__content v-dialog__content--active" style="z-index: 202;">
+      <transition-stub name="dialog-transition" appear="true">
+        <div class="v-dialog v-dialog--active" style="transform-origin: center center;">
+          <div class="address-container">
+            <form novalidate="novalidate" class="v-form">
+              <div class="row">
+                <div class="col-sm-3 col-md-5 col-6">
+                  <div class="v-input theme--light v-text-field">
+                    <div class="v-input__control">
+                      <div class="v-input__slot">
+                        <div class="v-text-field__slot"><label for="address-line-1" class="v-label theme--light" style="left: 0px; position: absolute;">Address line 1</label><input id="address-line-1" type="text"></div>
+                      </div>
+                      <div class="v-text-field__details">
+                        <div class="v-messages theme--light">
+                          <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-5 col-6">
+                  <div class="v-input theme--light v-text-field">
+                    <div class="v-input__control">
+                      <div class="v-input__slot">
+                        <div class="v-text-field__slot"><label for="input-11" class="v-label theme--light" style="left: 0px; position: absolute;">Address line 2</label><input id="input-11" type="text"></div>
+                      </div>
+                      <div class="v-text-field__details">
+                        <div class="v-messages theme--light">
+                          <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 col-md-5 col-6">
+                  <div class="v-input theme--light v-text-field">
+                    <div class="v-input__control">
+                      <div class="v-input__slot">
+                        <div class="v-text-field__slot"><label for="city" class="v-label theme--light" style="left: 0px; position: absolute;">City</label><input id="city" type="text"></div>
+                      </div>
+                      <div class="v-text-field__details">
+                        <div class="v-messages theme--light">
+                          <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-5 col-6">
+                  <div class="v-input theme--light v-text-field">
+                    <div class="v-input__control">
+                      <div class="v-input__slot">
+                        <div class="v-text-field__slot"><label for="state" class="v-label theme--light" style="left: 0px; position: absolute;">State</label><input id="state" type="text"></div>
+                      </div>
+                      <div class="v-text-field__details">
+                        <div class="v-messages theme--light">
+                          <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-5 col-6">
+                  <div class="v-input theme--light v-text-field">
+                    <div class="v-input__control">
+                      <div class="v-input__slot">
+                        <div class="v-text-field__slot"><label for="county" class="v-label theme--light" style="left: 0px; position: absolute;">County</label><input id="county" type="text"></div>
+                      </div>
+                      <div class="v-text-field__details">
+                        <div class="v-messages theme--light">
+                          <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-5 col-6">
+                  <div class="v-input theme--light v-text-field">
+                    <div class="v-input__control">
+                      <div class="v-input__slot">
+                        <div class="v-text-field__slot"><label for="zip" class="v-label theme--light" style="left: 0px; position: absolute;">Zip</label><input id="zip" type="text"></div>
+                      </div>
+                      <div class="v-text-field__details">
+                        <div class="v-messages theme--light">
+                          <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-5 col-6">
+                  <div class="v-input theme--light v-text-field">
+                    <div class="v-input__control">
+                      <div class="v-input__slot">
+                        <div class="v-text-field__slot"><label for="country" class="v-label theme--light" style="left: 0px; position: absolute;">Country</label><input id="country" type="text"></div>
+                      </div>
+                      <div class="v-text-field__details">
+                        <div class="v-messages theme--light">
+                          <transition-group-stub tag="div" name="message-transition" class="v-messages__wrapper"></transition-group-stub>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="mt-2 btn-container"><button type="button" disabled="disabled" class="mr-2 v-btn v-btn--disabled v-btn--has-bg theme--light v-size--default" id="pre-address-submit-btn"><span class="v-btn__content">
+          Submit
+        </span></button> <button type="button" class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default error"><span class="v-btn__content">
+          Close
+        </span></button></div>
+          </div>
+        </div>
+      </transition-stub>
+    </div>
+  </div>
+</div>
+`;
