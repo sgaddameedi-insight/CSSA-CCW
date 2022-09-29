@@ -12,7 +12,7 @@ jobs:
           persist-credentials: false
       - name: Install and Build 🔧
         run: | # Install npm packages and build the Storybook files
-           cd UI && npm install && npm run build-storybook
+           cd UI && npm install HUSKY_SKIP_INSTALL=1 && npm run build-storybook
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:

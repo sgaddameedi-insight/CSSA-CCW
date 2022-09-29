@@ -26,5 +26,5 @@ export const Button = () => ({
 });
 
 Button.story = {
-  name: 'Button Test 1111',
+  name: 'Button Test 1111 test',
 };
