@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="dialog.state">
       <template #activator="{ on, attrs }">
         <v-btn
           id="add-previous-address-btn"
@@ -119,7 +119,7 @@
           </v-btn>
           <v-btn
             color="error"
-            @click="dialog = false"
+            @click="dialog.state = false"
           >
             {{ $t('Close') }}
           </v-btn>
@@ -133,7 +133,7 @@
 import { AddressInfoType } from '@shared-ui/types/defaultTypes';
 import { reactive, ref } from 'vue';
 
-export interface PreviousAddressDialogProps {
+interface PreviousAddressDialogProps {
   getPreviousAddressFromDialog?: (address: AddressInfoType) => void;
 }
 
@@ -144,12 +144,12 @@ const props = withDefaults(defineProps<PreviousAddressDialogProps>(), {
 });
 
 const address = reactive({} as AddressInfoType);
-let dialog = false;
+let dialog = reactive({ state: false });
 const valid = ref(false);
 
 function handleSubmit() {
   props.getPreviousAddressFromDialog(address);
-  dialog = false;
+  dialog.state = false;
 }
 </script>
 
