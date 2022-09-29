@@ -18,6 +18,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: ~/UI/dist/storybook/core-public # The folder that the build-storybook script generates files.
+          FOLDER: ./UI/dist/storybook/core-public # The folder that the build-storybook script generates files.
           CLEAN: true # Automatically remove deleted files from the deploy branch
-          TARGET_FOLDER: docs
+          TARGET_FOLDER: ./UI/docs
