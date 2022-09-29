@@ -7,13 +7,8 @@
   </v-container>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import FormWrapper from '@core-public/components/wrappers/FormWrapper.vue';
-
-export default {
-  name: 'FormContainer',
-  components: { FormWrapper },
-};
 </script>
 
 <style lang="scss" scoped>

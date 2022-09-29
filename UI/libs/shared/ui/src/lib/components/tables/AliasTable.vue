@@ -40,17 +40,14 @@
   </v-simple-table>
 </template>
 
-<script lang="ts">
-import { Alias } from '@shared-ui/types/defualtTypes';
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { AliasType } from '@shared-ui/types/defaultTypes';
 
-export default defineComponent({
-  name: 'AliasTable',
-  props: {
-    aliases: {
-      type: Array<Alias>,
-      default: () => [],
-    },
-  },
+export interface AliasTableProps {
+  aliases?: Array<AliasType>;
+}
+
+const props = withDefaults(defineProps<AliasTableProps>(), {
+  aliases: () => [],
 });
 </script>

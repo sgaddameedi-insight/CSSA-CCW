@@ -1,11 +1,3 @@
-<i18n>
-{
-  "en": {
-    " continue ": " continue "
-  }
-}
-</i18n>
-
 <template>
   <v-stepper-items>
     <v-stepper-content step="1">
@@ -76,23 +68,18 @@
   </v-stepper-items>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import FormStepOne from './form-steps/FormStepOne.vue';
 import FormStepTwo from './form-steps/FormStepTwo.vue';
 import FormStepThree from './form-steps/FormStepThree.vue';
 
-export default {
-  name: 'FormStepItems',
-  components: { FormStepThree, FormStepOne, FormStepTwo },
-  props: {
-    stepIndex: {
-      type: Number,
-      default: 0,
-    },
-    handleNextSection: {
-      type: Function,
-      default: null,
-    },
-  },
-};
+export interface FormStepItemsProps {
+  stepIndex?: number;
+  handleNextSection?: () => void;
+}
+
+const props = withDefaults(defineProps<FormStepItemsProps>(), {
+  stepIndex: 0,
+  handleNextSection: () => null,
+});
 </script>

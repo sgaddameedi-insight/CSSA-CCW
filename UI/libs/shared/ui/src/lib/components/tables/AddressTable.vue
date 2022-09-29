@@ -44,17 +44,14 @@
   </v-simple-table>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import { AddressInfo } from '@shared-ui/types/defualtTypes';
+<script setup lang="ts">
+import { AddressInfoType } from '@shared-ui/types/defaultTypes';
 
-export default Vue.extend({
-  name: 'AddressTable',
-  props: {
-    addresses: {
-      type: Array<AddressInfo>,
-      default: () => [],
-    },
-  },
+export interface AddressTableProps {
+  addresses?: Array<AddressInfoType>;
+}
+
+const props = withDefaults(defineProps<AddressTableProps>(), {
+  addresses: () => [],
 });
 </script>

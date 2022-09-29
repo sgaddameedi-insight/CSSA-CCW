@@ -49,18 +49,12 @@
   </v-stepper-header>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+export interface FormStepHeaderProps {
+  stepIndex?: number;
+}
 
-export default defineComponent({
-  name: 'FormStepHeader',
-  props: {
-    stepIndex: {
-      type: Number,
-      default: 1,
-    },
-  },
+const props = withDefaults(defineProps<FormStepHeaderProps>(), {
+  stepIndex: 1,
 });
 </script>
-
-<style lang="scss" scoped></style>

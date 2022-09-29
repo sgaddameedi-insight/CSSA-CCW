@@ -3,36 +3,33 @@
     v-model="value"
     :label="$t(label)"
     :rules="rules"
+    :name="name"
     @blur="handleBlur"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 
-export default defineComponent({
-  name: 'TextInput',
-  data: () => ({
-    value: '',
-  }),
-  props: {
-    label: {
-      type: String,
-      default: '',
-    },
-    rules: {
-      type: Array<any>,
-      default: () => [],
-    },
-    target: {
-      type: String,
-      default: '',
-    },
-  },
-  methods: {
-    handleBlur(event) {
-      this.$emit('input', event.target.value, this.target);
-    },
-  },
+export interface TextInputProps {
+  label?: string;
+  name?: string;
+  rules?: string[];
+  target?: string;
+}
+
+const props = withDefaults(defineProps<TextInputProps>(), {
+  label: '',
+  name: '',
+  rules: () => [],
+  target: '',
 });
+
+const emit = defineEmits(['input']);
+
+function handleBlur(event) {
+  emit('input', event.target.value, props.target);
+}
+
+const value = ref('');
 </script>

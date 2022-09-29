@@ -1,12 +1,3 @@
-<i18n>
-{
-  "en": {
-    "\nSave and Exit\n": "\nSave and Exit\n",
-    "continue": "Continue"
-  }
-}
-</i18n>
-
 <template>
   <div>
     <v-form
@@ -198,97 +189,84 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { mapActions } from 'vuex';
+<script setup lang="ts">
+import { getCurrentInstance, reactive, ref } from 'vue';
+import { useActions } from 'vuex-composition-helpers';
 import AliasDialog from '@core-public/components/dialogs/AliasDialog.vue';
 import AliasTable from '@shared-ui/components/tables/AliasTable.vue';
-import { Alias, PersonalInfo } from '@shared-ui/types/defualtTypes';
+import { AliasType, PersonalInfoType } from '@shared-ui/types/defaultTypes';
 import TextInput from '@shared-ui/components/inputs/TextInput.vue';
 import CheckboxInput from '@shared-ui/components/inputs/CheckboxInput.vue';
 import RadioGroupInput from '@shared-ui/components/inputs/RadioGroupInput.vue';
 import FormErrorAlert from '@shared-ui/components/alerts/FormErrorAlert.vue';
 import FormButtonContainer from '@core-public/components/containers/FormButtonContainer.vue';
 
-export default defineComponent({
-  name: 'FormStepOne',
-  components: {
-    AliasTable,
-    AliasDialog,
-    CheckboxInput,
-    FormButtonContainer,
-    FormErrorAlert,
-    RadioGroupInput,
-    TextInput,
-  },
-  props: {
-    handleNextSection: {
-      type: Function as PropType<() => void>,
-      default: () => null,
-    },
-  },
-  data() {
-    return {
-      personalInfo: {} as PersonalInfo,
-      ssnConfirm: '' as string,
-      aliases: [] as Array<Alias>,
-      errors: [] as Array<string>,
-      valid: false,
-    };
-  },
-  computed: {},
-  methods: {
-    ...mapActions({
-      addAlias: 'addAlias',
-      addPersonalInfo: 'addPersonalInfo',
-    }),
+export interface FormStepOneProps {
+  handleNextSection: () => void;
+}
 
-    handleSubmit() {
-      if (!this.personalInfo.maritalStatus) {
-        this.errors.push('Marital Status');
-      } else {
-        this.addPersonalInfo(this.personalInfo);
-        this.addAlias(this.aliases);
-        this.handleNextSection();
-      }
-    },
-
-    getAliasFromDialog(alias) {
-      this.aliases.unshift(alias);
-    },
-    handleInput(value: string, target: string) {
-      switch (target) {
-        case 'lastName':
-          this.personalInfo.lastName = value;
-          break;
-        case 'firstName':
-          this.personalInfo.firstName = value;
-          break;
-        case 'middleName':
-          this.personalInfo.middleName = value;
-          break;
-        case 'suffix':
-          this.personalInfo.suffix = value;
-          break;
-        case 'noMiddleName':
-          this.personalInfo.noMiddleName = value !== 'false';
-          this.$forceUpdate();
-          break;
-        case 'SSN':
-          this.personalInfo.ssn = value;
-          break;
-        case 'confirmSSN':
-          this.ssnConfirm = value;
-          break;
-        case 'maritalStatus':
-          this.personalInfo.maritalStatus = value;
-          break;
-        default:
-          return;
-      }
-    },
-  },
+const props = withDefaults(defineProps<FormStepOneProps>(), {
+  handleNextSection: () => null,
 });
+
+const personalInfo = reactive({} as PersonalInfoType);
+const aliases = ref([] as Array<AliasType>);
+const errors = ref([] as Array<string>);
+const valid = ref(false);
+let ssnConfirm = ref('');
+
+const { addAlias, addPersonalInfo } = useActions([
+  'addAlias',
+  'addPersonalInfo',
+]);
+
+const instance = getCurrentInstance();
+
+function handleSubmit() {
+  if (!personalInfo.maritalStatus) {
+    errors.value.push('Marital Status');
+  } else {
+    addPersonalInfo(personalInfo);
+    addAlias(aliases.value);
+    props.handleNextSection();
+  }
+}
+
+function getAliasFromDialog(alias) {
+  aliases.value.unshift(alias);
+}
+
+function handleInput(value: string, target: string) {
+  switch (target) {
+    case 'lastName':
+      personalInfo.lastName = value;
+      break;
+    case 'firstName':
+      personalInfo.firstName = value;
+      break;
+    case 'middleName':
+      personalInfo.middleName = value;
+      break;
+    case 'suffix':
+      personalInfo.suffix = value;
+      break;
+    case 'noMiddleName':
+      personalInfo.noMiddleName = value !== 'false';
+      instance?.proxy?.$forceUpdate();
+      break;
+    case 'SSN':
+      personalInfo.ssn = value;
+      break;
+    case 'confirmSSN':
+      ssnConfirm.value = value;
+      break;
+    case 'maritalStatus':
+      personalInfo.maritalStatus = value;
+      break;
+    default:
+      return;
+  }
+}
 </script>
 
 <style lang="scss" scoped>

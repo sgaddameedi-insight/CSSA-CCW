@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div data-app>
     <v-dialog v-model="dialog">
       <template #activator="{ on, attrs }">
         <v-btn
+          id="add-alias-btn"
           color="primary my-5"
           v-bind="attrs"
           v-on="on"
@@ -113,41 +114,36 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { Alias } from '@shared-ui/types/defualtTypes';
+<script setup lang="ts">
+import { AliasType } from '@shared-ui/types/defaultTypes';
+import { reactive, ref } from 'vue';
 
-export default defineComponent({
-  name: 'AliasDialog',
-  props: {
-    saveAlias: {
-      type: Function as PropType<(alias: Alias) => void>,
-      default: () => {
-        return;
-      },
-    },
-  },
-  data() {
-    return {
-      alias: {
-        prevLastName: '',
-        prevFirstName: '',
-        prevMiddleName: '',
-        cityWhereChanged: '',
-        stateWhereChanged: '',
-        courtFileNumber: '',
-      } as Alias,
-      dialog: false,
-      valid: false,
-    };
-  },
-  methods: {
-    handleSubmit() {
-      this.saveAlias(this.alias);
-      this.dialog = false;
-    },
+export interface AliasDialogProps {
+  saveAlias?: (alias: AliasType) => void;
+}
+
+const props = withDefaults(defineProps<AliasDialogProps>(), {
+  saveAlias: () => {
+    return;
   },
 });
+
+const alias = reactive({
+  prevLastName: '',
+  prevFirstName: '',
+  prevMiddleName: '',
+  cityWhereChanged: '',
+  stateWhereChanged: '',
+  courtFileNumber: '',
+} as AliasType);
+
+let dialog = false;
+const valid = ref(false);
+
+function handleSubmit() {
+  props.saveAlias(alias);
+  dialog = false;
+}
 </script>
 
 <style lang="scss" scoped>

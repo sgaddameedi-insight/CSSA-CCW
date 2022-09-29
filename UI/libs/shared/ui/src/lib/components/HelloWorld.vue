@@ -114,17 +114,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+export interface HelloWorldProps {
+  msg: string;
+}
 
-export default defineComponent({
-  name: 'HelloWorld',
-  props: {
-    msg: {
-      type: String,
-      default: '',
-    },
-  },
+const props = withDefaults(defineProps<HelloWorldProps>(), {
+  msg: '',
 });
 </script>
 

@@ -16,26 +16,17 @@
   </v-card>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import FormStepHeader from '../form-stepper/FormStepHeader.vue';
 import FormStepItems from '../form-stepper/FormStepItems.vue';
-import { defineComponent } from 'vue';
+import { ref } from 'vue';
 
-export default defineComponent({
-  name: 'FormWrapper',
-  components: { FormStepItems, FormStepHeader },
-  data() {
-    return {
-      stepIndex: 1,
-    };
-  },
-  methods: {
-    handleNextSection() {
-      this.stepIndex = this.stepIndex + 1;
-      console.log(this.stepIndex);
-    },
-  },
-});
+const stepIndex = ref(1);
+
+function handleNextSection() {
+  stepIndex.value = stepIndex.value + 1;
+  console.log(stepIndex.value);
+}
 </script>
 
 <style lang="scss" scoped>

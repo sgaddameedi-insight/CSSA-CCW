@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import RadioGroupInput from '@shared-ui/components/inputs/RadioGroupInput.vue';
 import Vuetify from 'vuetify';
 import { createLocalVue, shallowMount } from '@vue/test-utils';

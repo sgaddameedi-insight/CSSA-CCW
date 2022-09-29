@@ -31,47 +31,36 @@
         v-for="(option, i) in options"
         :key="i"
         :label="$t(option.label)"
-        :value="$t(option.value)"
+        :value="option.value"
       />
     </v-radio-group>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { RadioOptions } from '@shared-ui/types/defualtTypes';
+<script setup lang="ts">
+import { RadioOptionsType } from '@shared-ui/types/defaultTypes';
+import { ref } from 'vue';
 
-export default defineComponent({
-  name: 'RadioGroupInput',
-  data: () => ({
-    value: '',
-  }),
-  props: {
-    options: {
-      type: Array<RadioOptions>,
-      default: () => [],
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    layout: {
-      type: String,
-      default: '',
-    },
-    hint: {
-      type: String,
-      default: '',
-    },
-    target: {
-      type: String,
-      default: '',
-    },
-  },
-  methods: {
-    handleChange() {
-      this.$emit('input', this.value, this.target);
-    },
-  },
+export interface RadioGroupInputProps {
+  options?: Array<RadioOptionsType>;
+  label?: string;
+  layout?: string;
+  hint?: string;
+  target?: string;
+}
+
+const props = withDefaults(defineProps<RadioGroupInputProps>(), {
+  options: () => [],
+  label: '',
+  layout: '',
+  hint: '',
+  target: '',
 });
+
+const emit = defineEmits(['input']);
+const value = ref('');
+
+function handleChange() {
+  emit('input', value.value, props.target);
+}
 </script>

@@ -1,0 +1,19 @@
+# Add 'repo' label to any root file changes
+main:
+- '**/*'
+
+# Add 'IaC' label to any change to src files within the source dir EXCEPT for the docs sub-folder
+IaC:
+- any: ['Deployment/**/*']
+
+# Add 'API' label to any change to src files within the source dir EXCEPT for the docs sub-folder
+API:
+- any: ['API/**/*']
+
+# Add 'UI` label to any change to *.js files as long as the `main.js` hasn't changed
+UI:
+- any: ['UI/**/*']
+
+# Add 'Documentation' label to any change to src files within the source dir EXCEPT for the docs sub-folder
+Documentation:
+- any: ['Documentation/**/*']

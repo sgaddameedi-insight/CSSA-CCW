@@ -1,3 +1,3 @@
-export default {
-  return: null,
-};
+import formJson from './formJson';
+
+export { formJson };

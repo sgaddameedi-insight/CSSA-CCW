@@ -9,17 +9,20 @@
     {{ isLoading ? $t('- loading') : '' }}
   </button>
 </template>
-<script lang="ts">
-export default {
-  name: 'MyButton',
-  props: {
-    name: { type: String, required: true },
-    isLoading: { type: Boolean, default: false },
-  },
-  methods: {
-    clickButton() {
-      this.$emit('buttonClicked', `${this.name}-button clicked`);
-    },
-  },
-};
+<script setup lang="ts">
+export interface ButtonProps {
+  name: string;
+  isLoading: boolean;
+}
+
+const props = withDefaults(defineProps<ButtonProps>(), {
+  name: '',
+  isLoading: true,
+});
+
+const emit = defineEmits(['buttonClicked']);
+
+function clickButton() {
+  emit('buttonClicked', `${props.name}-button clicked`);
+}
 </script>
