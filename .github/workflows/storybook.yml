@@ -14,7 +14,8 @@ jobs:
         run: | # Install npm packages and build the Storybook files
            cd UI
            npm install -g nx
-           HUSKY_SKIP_INSTALL=true npm install
+           npm set-script prepare ""
+           npm install
            npx nx build-storybook core-public
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
