@@ -1,1 +1,1 @@
-CSSA-CCW Pipelines
+Pipelines folder
